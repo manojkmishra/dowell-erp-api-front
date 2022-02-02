@@ -113,7 +113,8 @@ export default
                 {
             this.loading=true;
              //axios.get(`${axios.defaults.baseURL}/getjobs?page=${e.page}`,
-             axios.get(`${axios.defaults.baseURL}/take5/getjobs?offset=${e.pageStart}`,
+             //axios.get(`${axios.defaults.baseURL}/take5/getjobs?offset=${e.pageStart}`,
+             axios.get(`/take5/getjobs?offset=${e.pageStart}`,
              //{params:{'per_page':e.itemsPerPage}}
              )
                     .then((res) => { console.log('pagi-getjobs response',res.data.items)  
@@ -125,7 +126,8 @@ export default
               console.log('paginate-search=',this.search)
               let x=this.search;
               if(x.length>2){ this.loading=true;
-                 axios.get(`${axios.defaults.baseURL}/take5/getjobs?search=${x}`)
+                 //axios.get(`${axios.defaults.baseURL}/take5/getjobs?search=${x}`)
+                  axios.get(`/take5/getjobs?search=${x}`)
                     .then((res) => { console.log('sawsc search res1=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
                     .catch(err=>{ console.log('sawsc search err1=', err); this.loading=false;  })
@@ -144,7 +146,8 @@ export default
               console.log('paginate-search=',this.search)
               let x=this.search;
               if(x.length>2){ this.loading=true;
-                 axios.get(`${axios.defaults.baseURL}/take5/getjobs?search=${x}`)
+                 //axios.get(`${axios.defaults.baseURL}/take5/getjobs?search=${x}`)
+                  axios.get(`/take5/getjobs?search=${x}`)
                     .then((res) => { console.log('sawsc search res1=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
                     .catch(err=>{ console.log('sawsc search err1=', err); this.loading=false;  })
