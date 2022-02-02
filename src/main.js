@@ -11,9 +11,10 @@ import moment from 'moment'
 
 Vue.prototype.moment = moment
 //axios.defaults.baseURL=process.env.VUE_APP_API_URL
-axios.defaults.baseURL='http://127.0.0.1:8000/api'
-//axios.defaults.baseURL='http://54.79.50.225/api'
-//axios.defaults.baseURL='/api/'
+//axios.defaults.baseURL='http://127.0.0.1:8000/api'
+//axios.defaults.baseURL='http://3.128.11.187/api'
+
+axios.defaults.baseURL='/api/'
 
 /*
 if('serviceWorker' in navigator){
