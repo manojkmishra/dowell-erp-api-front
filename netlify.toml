@@ -1,7 +1,7 @@
 # api redirect.
 [[redirects]]
   from = "/api/*"
-  to = "http://54.79.50.225/api/:splat"
+  to = "http://3.128.11.187/api/:splat"
   status = 200
 # SPA router support.
 [[redirects]]
