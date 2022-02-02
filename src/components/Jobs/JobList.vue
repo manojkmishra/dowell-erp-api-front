@@ -153,7 +153,7 @@ export default
                     .catch(err=>{ console.log('sawsc search err1=', err); this.loading=false;  })
                 }
               if(x.length<=0){ this.loading=true;
-                 axios.get(`${axios.defaults.baseURL}/take5/getjobs`)
+                 axios.get(`/take5/getjobs`)
                     .then((res) => { console.log('sawsc search res2=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
                     .catch(err=>{ console.log('sawsc search err2=', err) ; this.loading=false; })
