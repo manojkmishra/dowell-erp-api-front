@@ -87,16 +87,16 @@ export default {
 
              ],
           },
-          { action: 'mdi-truck-delivery', title: 'Job Settings',hasMulSub: true,items: [
-              { title: 'Job List', route:'/joblist' },
+          { action: 'mdi-truck-delivery', title: 'Orders',hasMulSub: true,items: [
+              { title: 'Order List', route:'/orderlist' },
               // { title: 'User Jobs', route:'/sawbars' },
              //  { title: 'Job Type', route:'/jobtype' },
              //  { title: 'Status', route:'/status' },
              //  { title: 'Flags', route:'/flags' },
              ],
           },
-           { action: 'mdi-chart-bar', title: 'Charts',hasMulSub: true, items: [ { title: 'Bayswater', route:'test' }, ], },
-       /*   { action: 'mdi-folder', title: 'NSW',hasMulSub: true,items: [
+          /*  { action: 'mdi-chart-bar', title: 'Charts',hasMulSub: true, items: [ { title: 'Bayswater', route:'test' }, ], },
+         { action: 'mdi-folder', title: 'NSW',hasMulSub: true,items: [
               { title: 'Smithfield' },
               { title: 'Nowra' },
               { title: 'Beresfield' },

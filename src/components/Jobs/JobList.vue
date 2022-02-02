@@ -13,7 +13,7 @@
     <template v-slot:top >
 
         <v-toolbar flat dark dense color="blue darken-4">
-            <v-toolbar-title>ALL ORDERS[salesOrdersForOrderHub]</v-toolbar-title>
+            <v-toolbar-title>ALL ORDERS [salesOrdersForOrderHub]</v-toolbar-title>
              <v-divider class="mx-4" inset vertical ></v-divider>
            <v-toolbar-title class="pr-4" >ADMIN USER - {{user.name}} </v-toolbar-title>            
             <v-spacer></v-spacer>
@@ -133,7 +133,7 @@ export default
                     .catch(err=>{ console.log('sawsc search err1=', err); this.loading=false;  })
                 }
               if(x.length<=0){ this.loading=true;
-                 axios.get(`${axios.defaults.baseURL}/take5/getjobs`)
+                 axios.get(`/take5/getjobs`)
                     .then((res) => { console.log('sawsc search res2=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
                     .catch(err=>{ console.log('sawsc search err2=', err) ; this.loading=false; })

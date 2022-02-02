@@ -25,7 +25,7 @@ const routes = [
   {path:'/userlist',name:'userlist',component: UserList,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/wholesalerusers',name:'wholesaleruser',component: wholesaleruser,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/buyerusers',name:'buyeruser',component: buyeruser,meta: {middleware: [Middlewares.auth]}  } ,
-  {path:'/joblist',name:'joblist',component: Jobs,meta: {middleware: [Middlewares.auth]}  } ,
+  {path:'/orderlist',name:'orderlist',component: Jobs,meta: {middleware: [Middlewares.auth]}  } ,
   //{path:'/jobtype',name:'jobtype',component: Jobtype,meta: {middleware: [Middlewares.auth]}  } ,
   //{path:'/status',name:'status',component: status,meta: {middleware: [Middlewares.auth]}  } ,
   //{path:'/flags',name:'flags',component: flags,meta: {middleware: [Middlewares.auth]}  } , 
