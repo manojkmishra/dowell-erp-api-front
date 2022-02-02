@@ -23,8 +23,8 @@ export default {
     components: { 'dashboard1': dashboard1, },
      created(){ // this.$store.dispatch('getjobs');
                // this.$store.dispatch('getuserjobs')
-                this.$store.dispatch('getuserlist')
-                this.$store.dispatch('getjobtypes')
+                //this.$store.dispatch('getuserlist')
+                //this.$store.dispatch('getjobtypes')
                 
                 },
     mounted(){
