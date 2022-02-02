@@ -230,7 +230,7 @@ export default
                       }),
           ...mapState({
         
-            jobtypeoptions:state => state.jobs.jobtypeoptions,
+            //jobtypeoptions:state => state.jobs.jobtypeoptions,
              useroptions:state => state.user.useroptions,
         }),
       formattedDate(){

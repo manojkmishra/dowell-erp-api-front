@@ -66,7 +66,7 @@ export default
                        user:'auth/user'
                       }),
           ...mapState({
-            jobtypeoptions:state => state.jobs.jobtypeoptions,
+            //jobtypeoptions:state => state.jobs.jobtypeoptions,
            // getuserjobs:state => state.jobs.getuserjobs,
             useroptions:state => state.user.useroptions,
         }),
@@ -110,12 +110,7 @@ export default
             }
           },
   created(){ 
-     this.$store.dispatch('getuserjobs')
-      .then((res) => { //this.loading=false;
-                                console.log('getuserjobs response',res.data)  
-                                this.getuserjobs=res.data;
-                                this.loading=false;
-                        })
+
                         
                    
         },

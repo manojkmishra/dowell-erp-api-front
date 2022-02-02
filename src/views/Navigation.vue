@@ -80,9 +80,9 @@ export default {
            { action:'mdi-brightness-7', title: 'Settings',hasMulSub: true,items: [
            // { title: 'Profile', route:'/profile' },
               { title: 'Admin', route:'/userlist' },
-              { title: 'Wholesalers', route:'/wholesalerusers' },
-              { title: 'Buyers', route:'/buyerusers' },
-              { title: 'Bin Type', route:'/bintype' },
+            //  { title: 'Wholesalers', route:'/wholesalerusers' },
+            //  { title: 'Buyers', route:'/buyerusers' },
+            //  { title: 'Bin Type', route:'/bintype' },
              //  { title: 'User Rights', route:'/userrights' },
 
              ],
@@ -90,7 +90,7 @@ export default {
           { action: 'mdi-truck-delivery', title: 'Job Settings',hasMulSub: true,items: [
               { title: 'Job List', route:'/joblist' },
               // { title: 'User Jobs', route:'/sawbars' },
-               { title: 'Job Type', route:'/jobtype' },
+             //  { title: 'Job Type', route:'/jobtype' },
              //  { title: 'Status', route:'/status' },
              //  { title: 'Flags', route:'/flags' },
              ],

@@ -80,12 +80,12 @@
       editedIndex: -1,
     }),
         created(){  this.loading=true;
-             this.$store.dispatch('getjobtypes')
+             /*this.$store.dispatch('getjobtypes')
                     .then((res) => { //this.loading=false;
                                 console.log('getsawflags response',res.data)  
                                // this.categories=res.data;
                                 this.loading=false;
-                        }) 
+                        }) */
         },
      computed: { 
       formTitle() {  if (this.dialogDelete) { return "Delete Type";} 
@@ -96,8 +96,8 @@
                    },
       ...mapState({
 
-            sawflags:state => state.jobs.getjobtypes,
-             jobtypeoptions1:state => state.jobs.jobtypeoptions,
+           // sawflags:state => state.jobs.getjobtypes,
+            // jobtypeoptions1:state => state.jobs.jobtypeoptions,
         }),
              },
     
