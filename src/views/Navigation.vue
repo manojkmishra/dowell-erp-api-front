@@ -77,18 +77,18 @@ export default {
       items: [
           { action: 'mdi-view-dashboard', title: 'Dashboard', route:'/',hasMulSub: false },
           // { action: 'mdi-account', title: 'User Profile',route:'/user', hasMulSub: false },
-           { action:'mdi-brightness-7', title: 'Settings',hasMulSub: true,items: [
+         //  { action:'mdi-brightness-7', title: 'Settings',hasMulSub: true,items: [
            // { title: 'Profile', route:'/profile' },
-              { title: 'Users', route:'/userlist' },
+             // { title: 'Users', route:'/userlist' },
             //  { title: 'Wholesalers', route:'/wholesalerusers' },
             //  { title: 'Buyers', route:'/buyerusers' },
             //  { title: 'Bin Type', route:'/bintype' },
              //  { title: 'User Rights', route:'/userrights' },
 
-             ],
-          },
-          { action: 'mdi-truck-delivery', title: 'Orders',hasMulSub: true,items: [
-              { title: 'Order List', route:'/orderlist' },
+            // ],
+         // },
+          { action: 'mdi-truck-delivery', title: 'APIs',hasMulSub: true,items: [
+              { title: 'salesOrdersForOrderHub', route:'/orderlist' },
               // { title: 'User Jobs', route:'/sawbars' },
              //  { title: 'Job Type', route:'/jobtype' },
              //  { title: 'Status', route:'/status' },

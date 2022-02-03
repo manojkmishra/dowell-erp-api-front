@@ -8,6 +8,7 @@ import vuetify from './plugins/vuetify';
 require('@/store/subscriber')  //@ is for src folder
 require ('@/plugins/Sweetalert');
 import moment from 'moment'
+import TreeView from "vue-json-tree-view"
 
 Vue.prototype.moment = moment
 //axios.defaults.baseURL=process.env.VUE_APP_API_URL
@@ -23,7 +24,7 @@ if('serviceWorker' in navigator){
     .catch(err => console.log('service worker not registered', err));
 }*/
 //localStorage.removeItem('token')
-
+Vue.use(TreeView)
 Vue.config.productionTip = false
 store.dispatch('auth/attempt',localStorage.getItem('token'))
 .then(()=>{

@@ -7,4 +7,5 @@ export const GET_TK5  = 'GET_TK5';
 export const GET_PIC  = 'GET_PIC';
 export const GET_PDF  = 'GET_PDF';
 export const SET_SELECTED_SJC  = 'SET_SELECTED_SJC';
+export const GET_ORDER  = 'GET_ORDER';
 

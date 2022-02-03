@@ -5,7 +5,7 @@ import * as api from '../config';
 export default
 {
   state: {getjobs:null,getjobtypes:null, jobtypeoptions:[],selectedsjc:null, 
-      getc19:null,getuserjobs:null,gettk5:null,getpic:null,getpdf:null,
+      getc19:null,getuserjobs:null,gettk5:null,getpic:null,getpdf:null,getorder:null,
         },
   getters:{
   },
@@ -14,6 +14,10 @@ export default
     [types.GET_JOBS ] (state, payload) 
     { state.getjobs = payload.getjobs;
      console.log('/store/saw.js-types.GET_JOBS state=', state);
+    },
+    [types.GET_ORDER ] (state, payload) 
+    { state.getorder = payload.getorder;
+     console.log('/store/saw.js-types.GET_ORDER state=', state);
     },
     [types.GET_USER_JOBS ] (state, payload) 
     { state.getuserjobs = payload.getuserjobs;
@@ -59,6 +63,17 @@ export default
     async getjobs ({commit,dispatch}) 
     { let res= await axios.get(api.getjobs);  
       //commit({type:types.GET_JOBS ,  getjobs: res.data} ); 
+      return res;    
+    },
+    async clearorder ({commit,dispatch},formData) 
+    {commit({type:types.GET_ORDER ,  getorder: null} )
+    },
+    async getorder ({commit,dispatch},formData) 
+    { //let res= await axios.get(api.getorder,{params:{'orderkey':formData}});  
+    let res=axios.get(`/take5/getorder/`,{params:{'orderkey':formData}})
+    .then(res => {
+          commit({type:types.GET_ORDER ,  getorder: res} )
+      } )
       return res;    
     },
     async getuserjobs ({commit,dispatch}) 

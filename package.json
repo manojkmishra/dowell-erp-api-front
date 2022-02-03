@@ -17,6 +17,7 @@
     "pusher-js": "^6.0.3",
     "sweetalert2": "^9.10.12",
     "vue": "^2.6.10",
+    "vue-json-tree-view": "^2.1.6",
     "vue-router": "^3.1.3",
     "vuetify": "^2.2.11",
     "vuex": "^3.1.2",

@@ -21,11 +21,10 @@
 
         </v-toolbar>
     </template>
-
-
-    <template v-slot:item.t5="{ item }">
-      <v-btn v-if="item.TAKE5STATUS==1" ripple x-small  color="teal" rounded dark @click.prevent="t5fn(item)"  >Tk5</v-btn>
-       <v-btn v-else ripple x-small  color="red lighten-2" rounded dark @click.prevent="t5fn(item)"  >Tk5</v-btn>
+    <template v-slot:item.action="{ item }"><!--1=qd,2-inpr,3-complt----->
+     
+       <v-btn ripple small :loading="loading" color="teal " rounded dark   @click.prevent="checkorder(item)"><v-icon >mdi-cursor-default-click</v-icon></v-btn>
+       
     </template>
         <template v-slot:item.createdat="{ item }" ><!--8,0=qd,9-inpr,12-complt----->
        <span>{{moment(item.CreationDate).format('DD-MM-YYYY, HH:mm')}}</span>
@@ -59,8 +58,9 @@ export default
       editedIndex: -1, sawflags:[],// inputRules:[v=>v.length>=3||'Min len is 3 chars'],
               headers: [
              
-              { text: 'BUName', align: 'left',  value: 'BusinessUnitName', width:"1%"},
+               { text: 'Select', value: 'action', sortable: false , width:"1%"},
                { text: 'OrderNumber', align: 'left',  value: 'OrderNumber', width:"1%"},
+               { text: 'BUName', align: 'left',  value: 'BusinessUnitName', width:"1%"},
                { text: 'Buyer', align: 'left',  value: 'BuyingPartyName', width:"5%"},
               { text: 'BuyerContct', align: 'left',  value: 'BuyingPartyContactName', width:"1%"},
               { text: 'Contact', align: 'left',  value: 'BuyingPartyContactNumber', width:"1%"},
@@ -106,6 +106,28 @@ export default
                         })*/
         },
   methods: {  
+    checkorder(x){
+console.log('checkorder-',x)
+ this.$store.dispatch('getorder', x.OrderKey)
+                        .then((response) =>  { //console.log('order-response=',response);  
+                               // this.transferloading=false;   
+                               this.$router.push({   name: 'order'//,params: {data1: res }  
+                               });
+                                })     
+                        .catch((error) => {   //this.transferloading=false; 
+                        console.log('error-',error)     
+                        });
+
+//------------------------------------
+        /*  axios.get(`/take5/getorder/`,{params:{'orderkey':x.OrderKey}})
+          .then((res) => { console.log('one order response',res.data)  
+                                       this.loading=false; 
+                     this.$router.push({   name: 'order'//,params: {data1: res } 
+                      });
+                                       })
+                    .catch(err=>{ console.log('one order-err=', err) ; this.loading=false; }) */
+                    //--------------
+          },
             paginate1(e)
             { console.log('paginate-$event',e);
             //axios.get(`http://127.0.0.1:8000/api/saw/getsawschedules?page='+${e.page}`,{})
