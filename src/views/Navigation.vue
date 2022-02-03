@@ -79,7 +79,7 @@ export default {
           // { action: 'mdi-account', title: 'User Profile',route:'/user', hasMulSub: false },
            { action:'mdi-brightness-7', title: 'Settings',hasMulSub: true,items: [
            // { title: 'Profile', route:'/profile' },
-              { title: 'Admin', route:'/userlist' },
+              { title: 'Users', route:'/userlist' },
             //  { title: 'Wholesalers', route:'/wholesalerusers' },
             //  { title: 'Buyers', route:'/buyerusers' },
             //  { title: 'Bin Type', route:'/bintype' },

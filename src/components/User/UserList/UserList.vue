@@ -131,7 +131,8 @@
                                 return "Edit User";  }  
                               },
          ...mapState({  sawstatus:state => state.user.userlist}),
-          adminuser(){let bb= this.sawstatus.filter( x => x.type ===  "1" );
+          adminuser(){//let bb= this.sawstatus.filter( x => x.type ===  "1" );
+          let bb= this.sawstatus;
           console.log('this.sawstatys=',this.sawstatus)
                       return bb;
                       },
