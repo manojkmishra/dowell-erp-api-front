@@ -70,7 +70,7 @@ export default
     },
     async getorder ({commit,dispatch},formData) 
     { //let res= await axios.get(api.getorder,{params:{'orderkey':formData}});  
-    let res=axios.get(`/take5/getorder/`,{params:{'orderkey':formData}})
+    let res=axios.get(`/take5/getorder`,{params:{'orderkey':formData}})
     .then(res => {
           commit({type:types.GET_ORDER ,  getorder: res} )
       } )
