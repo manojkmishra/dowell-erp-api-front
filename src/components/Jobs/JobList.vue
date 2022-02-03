@@ -23,7 +23,7 @@
     </template>
     <template v-slot:item.action="{ item }"><!--1=qd,2-inpr,3-complt----->
      
-       <v-btn ripple small :loading="loading" color="teal " rounded dark   @click.prevent="checkorder(item)"><v-icon >mdi-cursor-default-click</v-icon></v-btn>
+       <v-btn ripple small :loading="loading" color="teal " rounded dark   @click.prevent="checkorder(item)"><v-icon >mdi-mouse-move-up</v-icon></v-btn>
        
     </template>
         <template v-slot:item.createdat="{ item }" ><!--8,0=qd,9-inpr,12-complt----->
@@ -108,13 +108,14 @@ export default
   methods: {  
     checkorder(x){
 console.log('checkorder-',x)
+this.loading=true;
  this.$store.dispatch('getorder', x.OrderKey)
                         .then((response) =>  { //console.log('order-response=',response);  
-                               // this.transferloading=false;   
+                                this.loading=false;   
                                this.$router.push({   name: 'order'//,params: {data1: res }  
                                });
                                 })     
-                        .catch((error) => {   //this.transferloading=false; 
+                        .catch((error) => {   this.loading=false; 
                         console.log('error-',error)     
                         });
 
