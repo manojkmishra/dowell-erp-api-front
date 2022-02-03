@@ -66,7 +66,8 @@ export default
       return res;    
     },
     async clearorder ({commit,dispatch},formData) 
-    {commit({type:types.GET_ORDER ,  getorder: null} )
+    {console.log('clear roder action')
+          commit({type:types.GET_ORDER ,  getorder: null} )
     },
     async getorder ({commit,dispatch},formData) 
     { //let res= await axios.get(api.getorder,{params:{'orderkey':formData}});  

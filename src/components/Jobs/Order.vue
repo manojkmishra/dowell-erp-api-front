@@ -23,23 +23,14 @@ export default {
   // props: ['data1'],
    components: { 
         'test-list-view': TestListView,  },
-   computed:{
-  ...mapState({
-            order: state => state.jobs.getorder,
-          
-        }),
-        hehe(){
-            console.log('this.order-',this.order)
-        }
-   },
+
    methods:{
        backToJob(){
-                this.$store.dispatch('clearorder')
-                .then((response) => { 
-
+               // this.$store.dispatch('clearorder')
+                //.then((response) => { console.log('going back')
                   this.$router.push({name: 'dashboard'});
                  // this.$store.commit({type:types.GET_FLAGGED_JOB ,  flaggedjob: ""} ); 
-                                    })
+                                   // })
        }
    }
   
