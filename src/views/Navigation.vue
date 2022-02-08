@@ -87,8 +87,18 @@ export default {
 
            //  ],
           //},
-          { action: 'mdi-api', title: 'APIs',hasMulSub: true,items: [
+          { action: 'mdi-api', title: 'Order Mgmnt',hasMulSub: true,items: [
               { title: 'salesOrdersForOrderHub', route:'/orderlist' },
+              { title: 'priceLists', route:'/pricelists' },
+              // { title: 'User Jobs', route:'/sawbars' },
+             //  { title: 'Job Type', route:'/jobtype' },
+             //  { title: 'Status', route:'/status' },
+             //  { title: 'Flags', route:'/flags' },
+             ],
+          },
+          { action: 'mdi-api', title: 'Manufacturing',hasMulSub: true,items: [
+              { title: 'workOrders', route:'/workorders' },
+              //{ title: 'priceLists', route:'/pricelists' },
               // { title: 'User Jobs', route:'/sawbars' },
              //  { title: 'Job Type', route:'/jobtype' },
              //  { title: 'Status', route:'/status' },

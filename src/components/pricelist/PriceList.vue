@@ -58,14 +58,14 @@ export default
       editedIndex: -1, sawflags:[],// inputRules:[v=>v.length>=3||'Min len is 3 chars'],
               headers: [
              
-               { text: 'Select', value: 'action', sortable: false , width:"1%"},
-               { text: 'OrderNumber', align: 'left',  value: 'OrderNumber', width:"1%"},
-               { text: 'BUName', align: 'left',  value: 'BusinessUnitName', width:"1%"},
-               { text: 'Buyer', align: 'left',  value: 'BuyingPartyName', width:"5%"},
-              { text: 'BuyerContct', align: 'left',  value: 'BuyingPartyContactName', width:"1%"},
-              { text: 'Contact', align: 'left',  value: 'BuyingPartyContactNumber', width:"1%"},
-              { text: 'PrcSeg', align: 'left',  value: 'PricingSegment', width:"1%"},
-              { text: 'OrdKey', align: 'left',  value: 'OrderKey', width:"1%"},
+              // { text: 'Select', value: 'action', sortable: false , width:"1%"},
+               { text: 'PriceListName', align: 'left',  value: 'PriceListName', width:"1%"},
+               { text: 'BU', align: 'left',  value: 'BusinessUnit', width:"1%"},
+               { text: 'PriceListType', align: 'left',  value: 'PriceListTypeCode', width:"5%"},
+              { text: 'PriceListDescription', align: 'left',  value: 'PriceListDescription', width:"1%"},
+              { text: 'PricingChargeDefinitionCode', align: 'left',  value: 'PricingChargeDefinitionCode', width:"1%"},
+              { text: 'CalculationMethodCode', align: 'left',  value: 'CalculationMethodCode', width:"1%"},
+              { text: 'LineTypeCode', align: 'left',  value: 'LineTypeCode', width:"1%"},
               //{ text: 'Postcd', align: 'left',  value: 'POSTCODE'},
               //{ text: 'Contact', align: 'left',  value: 'CONTACT'},
              // { text: 'Due Dt', align: 'left',  value: 'DELIVERY_DATE'},
@@ -83,17 +83,6 @@ export default
                //{ text: 'Action', value: 'actions', sortable: false , width:"1%"},
             ],
 
-        phoneRules:[
-            (v) => /^\d+$/.test(v)||'Required and must be in numbers',
-            (v) => (v && v.length >8) || 'Must be more than 8 digits '
-         ],
-         fieldRules: [ (v) => (v && v.length >2)|| 'Required & should be more than 2 chars ' ],
-         postRules:[
-            (v) => /^\d+$/.test(v)||'Required and must be in numbers',
-            (v) => (v && v.length >2) || 'Must be more than 2 digits '
-         ],
-         fieldRules: [ (v) => (v && v.length >2)|| 'Required & should be more than 2 chars ' ],
-        // formx:{sjcid:'',v},
 
     }
           },
@@ -138,7 +127,7 @@ this.loading=true;
             this.loading=true;
              //axios.get(`${axios.defaults.baseURL}/getjobs?page=${e.page}`,
              //axios.get(`${axios.defaults.baseURL}/take5/getjobs?offset=${e.pageStart}`,
-             axios.get(`/take5/getjobs?offset=${e.pageStart}`,
+             axios.get(`/take5/pricelists?offset=${e.pageStart}`,
              //{params:{'per_page':e.itemsPerPage}}
              )
                     .then((res) => { console.log('pagi-getjobs response',res.data.items)  
@@ -151,13 +140,13 @@ this.loading=true;
               let x=this.search;
               if(x.length>2){ this.loading=true;
                  //axios.get(`${axios.defaults.baseURL}/take5/getjobs?search=${x}`)
-                  axios.get(`/take5/getjobs?search=${x}`)
+                  axios.get(`/take5/pricelists?search=${x}`)
                     .then((res) => { console.log('sawsc search res1=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
                     .catch(err=>{ console.log('sawsc search err1=', err); this.loading=false;  })
                 }
               if(x.length<=0){ this.loading=true;
-                 axios.get(`/take5/getjobs`)
+                 axios.get(`/take5/pricelists`)
                     .then((res) => { console.log('sawsc search res2=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
                     .catch(err=>{ console.log('sawsc search err2=', err) ; this.loading=false; })
@@ -171,13 +160,13 @@ this.loading=true;
               let x=this.search;
               if(x.length>2){ this.loading=true;
                  //axios.get(`${axios.defaults.baseURL}/take5/getjobs?search=${x}`)
-                  axios.get(`/take5/getjobs?search=${x}`)
+                  axios.get(`/take5/pricelists?search=${x}`)
                     .then((res) => { console.log('sawsc search res1=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
                     .catch(err=>{ console.log('sawsc search err1=', err); this.loading=false;  })
                 }
               if(x.length<=0){ this.loading=true;
-                 axios.get(`/take5/getjobs`)
+                 axios.get(`/take5/pricelists`)
                     .then((res) => { console.log('sawsc search res2=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
                     .catch(err=>{ console.log('sawsc search err2=', err) ; this.loading=false; })

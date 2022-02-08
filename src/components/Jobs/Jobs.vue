@@ -1,6 +1,6 @@
 <template>
     <div class="mt-3">
-        <joblist v-bind:bb="aa" :loading="loading"></joblist> 
+        <joblist :loading="loading"></joblist> 
             
     </div>
 </template>

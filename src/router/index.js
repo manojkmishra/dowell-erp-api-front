@@ -6,8 +6,12 @@ import Dashboard from '../views/Dashboard.vue'
 import UserList from '../components/User/UserList/UserList.vue'
 import wholesaleruser from '../components/User/Wholesaler/UserList.vue'
 import buyeruser from '../components/User/Buyer/UserList.vue'
+
 import Jobs from '../components/Jobs/Jobs.vue'
 import Order from '../components/Jobs/Order.vue'
+import Pricelist from '../components/pricelist/price.vue'
+import WorkOrders from '../components/workorders/price.vue'
+
 import Jobtype from '../components/Jobtype/Jobtype.vue'
 import status from '@/components/status/status.vue'
 import flags from '@/components/flags/flags.vue'
@@ -26,8 +30,11 @@ const routes = [
   {path:'/userlist',name:'userlist',component: UserList,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/wholesalerusers',name:'wholesaleruser',component: wholesaleruser,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/buyerusers',name:'buyeruser',component: buyeruser,meta: {middleware: [Middlewares.auth]}  } ,
+
   {path:'/orderlist',name:'orderlist',component: Jobs,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/order',name:'order',component: Order,meta: {middleware: [Middlewares.auth]}  } ,
+  {path:'/pricelists',name:'pricelists',component: Pricelist,meta: {middleware: [Middlewares.auth]}  } ,
+  {path:'/workorders',name:'workorders',component: WorkOrders,meta: {middleware: [Middlewares.auth]}  } ,
   //{path:'/jobtype',name:'jobtype',component: Jobtype,meta: {middleware: [Middlewares.auth]}  } ,
   //{path:'/status',name:'status',component: status,meta: {middleware: [Middlewares.auth]}  } ,
   //{path:'/flags',name:'flags',component: flags,meta: {middleware: [Middlewares.auth]}  } , 

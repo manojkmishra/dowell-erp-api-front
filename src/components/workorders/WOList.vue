@@ -13,7 +13,7 @@
     <template v-slot:top >
 
         <v-toolbar flat dark dense color="blue darken-4">
-            <v-toolbar-title>ALL ORDERS [salesOrdersForOrderHub]</v-toolbar-title>
+            <v-toolbar-title>WORK ORDERS [workOrders]</v-toolbar-title>
              <v-divider class="mx-4" inset vertical ></v-divider>
            <v-toolbar-title class="pr-4" >ADMIN USER - {{user.name}} </v-toolbar-title>            
             <v-spacer></v-spacer>
@@ -58,14 +58,17 @@ export default
       editedIndex: -1, sawflags:[],// inputRules:[v=>v.length>=3||'Min len is 3 chars'],
               headers: [
              
-               { text: 'Select', value: 'action', sortable: false , width:"1%"},
-               { text: 'OrderNumber', align: 'left',  value: 'OrderNumber', width:"1%"},
-               { text: 'BUName', align: 'left',  value: 'BusinessUnitName', width:"1%"},
-               { text: 'Buyer', align: 'left',  value: 'BuyingPartyName', width:"5%"},
-              { text: 'BuyerContct', align: 'left',  value: 'BuyingPartyContactName', width:"1%"},
-              { text: 'Contact', align: 'left',  value: 'BuyingPartyContactNumber', width:"1%"},
-              { text: 'PrcSeg', align: 'left',  value: 'PricingSegment', width:"1%"},
-              { text: 'OrdKey', align: 'left',  value: 'OrderKey', width:"1%"},
+              // { text: 'Select', value: 'action', sortable: false , width:"1%"},
+               { text: 'WOId', align: 'left',  value: 'WorkOrderId', width:"1%"},
+               { text: 'WONo', align: 'left',  value: 'WorkOrderNumber', width:"1%"},
+               { text: 'OrgName', align: 'left',  value: 'OrganizationName', width:"5%"},
+              { text: 'WOType', align: 'left',  value: 'WorkOrderType', width:"1%"},
+              { text: 'ItemNo', align: 'left',  value: 'ItemNumber', width:"1%"},
+              { text: 'WODate', align: 'left',  value: 'WorkOrderDate', width:"1%"},
+              { text: 'PlanStrtDt', align: 'left',  value: 'PlannedStartDate', width:"1%"},
+              { text: 'PlanCompltDt', align: 'left',  value: 'PlannedCompletionDate', width:"1%"},
+              { text: 'SupplyTyp', align: 'left',  value: 'SupplyTypeDescription', width:"1%"},
+              { text: 'WorkMethodCode', align: 'left',  value: 'WorkMethodCode', width:"1%"},
               //{ text: 'Postcd', align: 'left',  value: 'POSTCODE'},
               //{ text: 'Contact', align: 'left',  value: 'CONTACT'},
              // { text: 'Due Dt', align: 'left',  value: 'DELIVERY_DATE'},
@@ -83,17 +86,6 @@ export default
                //{ text: 'Action', value: 'actions', sortable: false , width:"1%"},
             ],
 
-        phoneRules:[
-            (v) => /^\d+$/.test(v)||'Required and must be in numbers',
-            (v) => (v && v.length >8) || 'Must be more than 8 digits '
-         ],
-         fieldRules: [ (v) => (v && v.length >2)|| 'Required & should be more than 2 chars ' ],
-         postRules:[
-            (v) => /^\d+$/.test(v)||'Required and must be in numbers',
-            (v) => (v && v.length >2) || 'Must be more than 2 digits '
-         ],
-         fieldRules: [ (v) => (v && v.length >2)|| 'Required & should be more than 2 chars ' ],
-        // formx:{sjcid:'',v},
 
     }
           },
@@ -138,7 +130,7 @@ this.loading=true;
             this.loading=true;
              //axios.get(`${axios.defaults.baseURL}/getjobs?page=${e.page}`,
              //axios.get(`${axios.defaults.baseURL}/take5/getjobs?offset=${e.pageStart}`,
-             axios.get(`/take5/getjobs?offset=${e.pageStart}`,
+             axios.get(`/take5/workorders?offset=${e.pageStart}`,
              //{params:{'per_page':e.itemsPerPage}}
              )
                     .then((res) => { console.log('pagi-getjobs response',res.data.items)  
@@ -151,13 +143,13 @@ this.loading=true;
               let x=this.search;
               if(x.length>2){ this.loading=true;
                  //axios.get(`${axios.defaults.baseURL}/take5/getjobs?search=${x}`)
-                  axios.get(`/take5/getjobs?search=${x}`)
+                  axios.get(`/take5/workorders?search=${x}`)
                     .then((res) => { console.log('sawsc search res1=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
                     .catch(err=>{ console.log('sawsc search err1=', err); this.loading=false;  })
                 }
               if(x.length<=0){ this.loading=true;
-                 axios.get(`/take5/getjobs`)
+                 axios.get(`/take5/workorders`)
                     .then((res) => { console.log('sawsc search res2=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
                     .catch(err=>{ console.log('sawsc search err2=', err) ; this.loading=false; })
@@ -171,13 +163,13 @@ this.loading=true;
               let x=this.search;
               if(x.length>2){ this.loading=true;
                  //axios.get(`${axios.defaults.baseURL}/take5/getjobs?search=${x}`)
-                  axios.get(`/take5/getjobs?search=${x}`)
+                  axios.get(`/take5/workorders?search=${x}`)
                     .then((res) => { console.log('sawsc search res1=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
                     .catch(err=>{ console.log('sawsc search err1=', err); this.loading=false;  })
                 }
               if(x.length<=0){ this.loading=true;
-                 axios.get(`/take5/getjobs`)
+                 axios.get(`/take5/workorders`)
                     .then((res) => { console.log('sawsc search res2=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
                     .catch(err=>{ console.log('sawsc search err2=', err) ; this.loading=false; })

@@ -93,7 +93,8 @@ export default
     async editjobs ({dispatch}, formData)
     {   console.log('editjobs-- formData=', formData);
           let res= await axios.post(api.editjobs, formData)  
-                .then(response => { dispatch('getjobs');  })
+                .then(response => { //dispatch('getjobs'); 
+             })
                 .catch(response => {    });
             return res;
     },
