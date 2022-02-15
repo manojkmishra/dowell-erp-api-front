@@ -7,7 +7,7 @@
           <v-divider class="mx-4" inset vertical ></v-divider>
           <v-toolbar-title>{{order.OrderNumber}} </v-toolbar-title>
           <v-spacer/>
-         <v-btn  id="btn-cutselected" small  color="blue darken-4" rounded dark   @click.prevent="edit">Save</v-btn>
+         <v-btn  id="btn-cutselected" small disabled color="blue darken-4" rounded dark   @click.prevent="edit">Save</v-btn>
         </v-toolbar>
          </template>   
       
