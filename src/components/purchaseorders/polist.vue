@@ -13,7 +13,7 @@
     <template v-slot:top >
 
         <v-toolbar flat dark dense color="blue darken-4">
-            <v-toolbar-title>Price List [priceLists]</v-toolbar-title>
+            <v-toolbar-title>PURCHASE ORDERS [purchaseOrders]</v-toolbar-title>
              <v-divider class="mx-4" inset vertical ></v-divider>
            <v-toolbar-title class="pr-4" >ADMIN USER - {{user.name}} </v-toolbar-title>            
             <v-spacer></v-spacer>
@@ -58,14 +58,17 @@ export default
       editedIndex: -1, sawflags:[],// inputRules:[v=>v.length>=3||'Min len is 3 chars'],
               headers: [
              
-              // { text: 'Select', value: 'action', sortable: false , width:"1%"},
-               { text: 'PriceListName', align: 'left',  value: 'PriceListName', width:"1%"},
-               { text: 'BU', align: 'left',  value: 'BusinessUnit', width:"1%"},
-               { text: 'PriceListType', align: 'left',  value: 'PriceListTypeCode', width:"5%"},
-              { text: 'PriceListDescription', align: 'left',  value: 'PriceListDescription', width:"1%"},
-              { text: 'PricingChargeDefinitionCode', align: 'left',  value: 'PricingChargeDefinitionCode', width:"1%"},
-              { text: 'CalculationMethodCode', align: 'left',  value: 'CalculationMethodCode', width:"1%"},
-              { text: 'LineTypeCode', align: 'left',  value: 'LineTypeCode', width:"1%"},
+               { text: 'POHeaderId', value: 'POHeaderId', sortable: false , width:"1%"},
+               { text: 'OrderNumber', align: 'left',  value: 'OrderNumber', width:"3%"},
+               { text: 'ProcurementBU', align: 'left',  value: 'ProcurementBU', width:"3%"},
+               //{ text: 'BUName', align: 'left',  value: 'BusinessUnitName', width:"1%"},
+               { text: 'Buyer', align: 'left',  value: 'Buyer', width:"5%"},
+                { text: 'Supplier', align: 'left',  value: 'Supplier', width:"5%"},
+                 { text: 'SupplierSite', align: 'left',  value: 'SupplierSite', width:"5%"},
+              { text: 'Ordered', align: 'left',  value: 'Ordered', width:"1%"},
+              { text: 'TotalTax', align: 'left',  value: 'TotalTax', width:"1%"},
+              { text: 'Total', align: 'left',  value: 'Total', width:"1%"},
+              //{ text: 'OrdKey', align: 'left',  value: 'OrderKey', width:"1%"},
               //{ text: 'Postcd', align: 'left',  value: 'POSTCODE'},
               //{ text: 'Contact', align: 'left',  value: 'CONTACT'},
              // { text: 'Due Dt', align: 'left',  value: 'DELIVERY_DATE'},
@@ -83,6 +86,17 @@ export default
                //{ text: 'Action', value: 'actions', sortable: false , width:"1%"},
             ],
 
+        phoneRules:[
+            (v) => /^\d+$/.test(v)||'Required and must be in numbers',
+            (v) => (v && v.length >8) || 'Must be more than 8 digits '
+         ],
+         fieldRules: [ (v) => (v && v.length >2)|| 'Required & should be more than 2 chars ' ],
+         postRules:[
+            (v) => /^\d+$/.test(v)||'Required and must be in numbers',
+            (v) => (v && v.length >2) || 'Must be more than 2 digits '
+         ],
+         fieldRules: [ (v) => (v && v.length >2)|| 'Required & should be more than 2 chars ' ],
+        // formx:{sjcid:'',v},
 
     }
           },
@@ -127,10 +141,10 @@ this.loading=true;
             this.loading=true;
              //axios.get(`${axios.defaults.baseURL}/getjobs?page=${e.page}`,
              //axios.get(`${axios.defaults.baseURL}/take5/getjobs?offset=${e.pageStart}`,
-             axios.get(`/take5/pricelists?offset=${e.pageStart}`,
+             axios.get(`/take5/getpurchaseorders?offset=${e.pageStart}`,
              //{params:{'per_page':e.itemsPerPage}}
              )
-                    .then((res) => { console.log('pagi-getjobs response',res.data.items)  
+                    .then((res) => { console.log('pagi-getpurchaseorders response',res.data.items)  
                                       this.sawflags=res.data; this.loading=false;   })
                     .catch(err=>{ console.log('paginate-err=', err) ; this.loading=false; })
                 }
@@ -140,16 +154,16 @@ this.loading=true;
               let x=this.search;
               if(x.length>2){ this.loading=true;
                  //axios.get(`${axios.defaults.baseURL}/take5/getjobs?search=${x}`)
-                  axios.get(`/take5/pricelists?search=${x}`)
-                    .then((res) => { console.log('sawsc search res1=',res.data)  
+                  axios.get(`/take5/getpurchaseorders?search=${x}`)
+                    .then((res) => { console.log('getpurchaseorders search res1=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
-                    .catch(err=>{ console.log('sawsc search err1=', err); this.loading=false;  })
+                    .catch(err=>{ console.log('getpurchaseorders search err1=', err); this.loading=false;  })
                 }
               if(x.length<=0){ this.loading=true;
-                 axios.get(`/take5/pricelists`)
-                    .then((res) => { console.log('sawsc search res2=',res.data)  
+                 axios.get(`/take5/getpurchaseorders`)
+                    .then((res) => { console.log('getpurchaseorders search res2=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
-                    .catch(err=>{ console.log('sawsc search err2=', err) ; this.loading=false; })
+                    .catch(err=>{ console.log('getpurchaseorders search err2=', err) ; this.loading=false; })
               }
 
                 }
@@ -160,16 +174,16 @@ this.loading=true;
               let x=this.search;
               if(x.length>2){ this.loading=true;
                  //axios.get(`${axios.defaults.baseURL}/take5/getjobs?search=${x}`)
-                  axios.get(`/take5/pricelists?search=${x}`)
-                    .then((res) => { console.log('sawsc search res1=',res.data)  
+                  axios.get(`/take5/getpurchaseorders?search=${x}`)
+                    .then((res) => { console.log('getpurchaseorders search res1=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
-                    .catch(err=>{ console.log('sawsc search err1=', err); this.loading=false;  })
+                    .catch(err=>{ console.log('getpurchaseorders search err1=', err); this.loading=false;  })
                 }
               if(x.length<=0){ this.loading=true;
-                 axios.get(`/take5/pricelists`)
-                    .then((res) => { console.log('sawsc search res2=',res.data)  
+                 axios.get(`/take5/getpurchaseorders`)
+                    .then((res) => { console.log('getpurchaseorders search res2=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
-                    .catch(err=>{ console.log('sawsc search err2=', err) ; this.loading=false; })
+                    .catch(err=>{ console.log('getpurchaseorders search err2=', err) ; this.loading=false; })
               }
             },
 

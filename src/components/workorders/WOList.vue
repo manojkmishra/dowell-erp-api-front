@@ -15,7 +15,7 @@
         <v-toolbar flat dark dense color="blue darken-4">
             <v-toolbar-title>WORK ORDERS [workOrders]</v-toolbar-title>
              <v-divider class="mx-4" inset vertical ></v-divider>
-           <v-toolbar-title class="pr-4" >ADMIN USER - {{user.name}} </v-toolbar-title>            
+         <!--  <v-toolbar-title class="pr-4" >ADMIN USER - {{user.name}} </v-toolbar-title>   -->         
             <v-spacer></v-spacer>
             <v-text-field v-model="search" @input="searchit" append-icon="mdi-magnify" label="Search OrderNumber" single-line hide-details></v-text-field>
 

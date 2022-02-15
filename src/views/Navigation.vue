@@ -87,9 +87,14 @@ export default {
 
            //  ],
           //},
+          { action: 'mdi-api', title: 'Common APIs',hasMulSub: true,items: [
+              { title: 'ERPUsers', route:'/erpusers' },
+             ],
+          },
           { action: 'mdi-api', title: 'Order Mgmnt',hasMulSub: true,items: [
               { title: 'salesOrdersForOrderHub', route:'/orderlist' },
               { title: 'priceLists', route:'/pricelists' },
+             
               // { title: 'User Jobs', route:'/sawbars' },
              //  { title: 'Job Type', route:'/jobtype' },
              //  { title: 'Status', route:'/status' },
@@ -98,13 +103,14 @@ export default {
           },
           { action: 'mdi-api', title: 'Manufacturing',hasMulSub: true,items: [
               { title: 'workOrders', route:'/workorders' },
-              //{ title: 'priceLists', route:'/pricelists' },
-              // { title: 'User Jobs', route:'/sawbars' },
-             //  { title: 'Job Type', route:'/jobtype' },
-             //  { title: 'Status', route:'/status' },
-             //  { title: 'Flags', route:'/flags' },
              ],
           },
+          { action: 'mdi-api', title: 'Procurement',hasMulSub: true,items: [
+              { title: 'purchaseOrders', route:'/purchaseorders' },
+              { title: 'POSchedules', route:'/poschedules' },
+             ],
+          },
+
           /*  { action: 'mdi-chart-bar', title: 'Charts',hasMulSub: true, items: [ { title: 'Bayswater', route:'test' }, ], },
          { action: 'mdi-folder', title: 'NSW',hasMulSub: true,items: [
               { title: 'Smithfield' },
