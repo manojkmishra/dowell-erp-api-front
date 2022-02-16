@@ -87,10 +87,7 @@ export default {
 
            //  ],
           //},
-          { action: 'mdi-api', title: 'Common APIs',hasMulSub: true,items: [
-              { title: 'ERPUsers', route:'/erpusers' },
-             ],
-          },
+          
           { action: 'mdi-api', title: 'Order Mgmnt',hasMulSub: true,items: [
               { title: 'salesOrdersForOrderHub', route:'/orderlist' },
               { title: 'priceLists', route:'/pricelists' },
@@ -110,7 +107,14 @@ export default {
               { title: 'POSchedules', route:'/poschedules' },
              ],
           },
-
+          { action: 'mdi-api', title: 'CX APIs',hasMulSub: true,items: [
+              { title: 'Accounts', route:'/accounts' },
+             ],
+          },
+          { action: 'mdi-api', title: 'Common APIs',hasMulSub: true,items: [
+              { title: 'ERPUsers', route:'/erpusers' },
+             ],
+          },
           /*  { action: 'mdi-chart-bar', title: 'Charts',hasMulSub: true, items: [ { title: 'Bayswater', route:'test' }, ], },
          { action: 'mdi-folder', title: 'NSW',hasMulSub: true,items: [
               { title: 'Smithfield' },

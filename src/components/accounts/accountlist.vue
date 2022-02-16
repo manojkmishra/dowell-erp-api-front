@@ -13,9 +13,9 @@
     <template v-slot:top >
 
         <v-toolbar flat dark dense color="blue darken-4">
-            <v-toolbar-title>WORK ORDERS [workOrders]</v-toolbar-title>
+            <v-toolbar-title>Accounts [crmRestApi/resources/11.13.18.05/accounts]</v-toolbar-title>
              <v-divider class="mx-4" inset vertical ></v-divider>
-         <!--  <v-toolbar-title class="pr-4" >ADMIN USER - {{user.name}} </v-toolbar-title>   -->         
+                     
             <v-spacer></v-spacer>
             <v-text-field v-model="search" @input="searchit" append-icon="mdi-magnify" label="Search OrderNumber" single-line hide-details></v-text-field>
 
@@ -23,7 +23,7 @@
     </template>
     <template v-slot:item.action="{ item }"><!--1=qd,2-inpr,3-complt----->
      
-       <v-btn ripple small :loading="loading" color="teal " rounded dark   @click.prevent="getwomaterial(item)"><v-icon >mdi-mouse-move-up</v-icon></v-btn>
+       <v-btn ripple small :loading="loading" color="teal " rounded dark   @click.prevent="checkorder(item)"><v-icon >mdi-mouse-move-up</v-icon></v-btn>
        
     </template>
         <template v-slot:item.createdat="{ item }" ><!--8,0=qd,9-inpr,12-complt----->
@@ -31,16 +31,6 @@
     </template>
     <template v-slot:item.updatedat="{ item }" ><!--8,0=qd,9-inpr,12-complt----->
        <span>{{moment(item.LastUpdateDate).format('DD-MM-YYYY, HH:mm')}}</span>
-    </template>
-
-     <template v-slot:item.wodate="{ item }" ><!--8,0=qd,9-inpr,12-complt----->
-       <span>{{moment(item.WorkOrderDate).format('DD-MM-YYYY, HH:mm')}}</span>
-    </template>
-     <template v-slot:item.plnstrtdate="{ item }" ><!--8,0=qd,9-inpr,12-complt----->
-       <span>{{moment(item.PlannedStartDate).format('DD-MM-YYYY, HH:mm')}}</span>
-    </template>
-     <template v-slot:item.plncompltdate="{ item }" ><!--8,0=qd,9-inpr,12-complt----->
-       <span>{{moment(item.PlannedCompletionDate).format('DD-MM-YYYY, HH:mm')}}</span>
     </template>
 
     <template v-slot:item.actions="{ item }">
@@ -68,18 +58,17 @@ export default
       editedIndex: -1, sawflags:[],// inputRules:[v=>v.length>=3||'Min len is 3 chars'],
               headers: [
              
-              // { text: 'Select', value: 'action', sortable: false , width:"1%"},
-               { text: 'WOId', align: 'left',  value: 'WorkOrderId', width:"1%"},
-               { text: 'WONo', align: 'left',  value: 'WorkOrderNumber', width:"1%"},
-               { text: 'Material', value: 'action', sortable: false , width:"1%"},
-               { text: 'OrgName', align: 'left',  value: 'OrganizationName', width:"5%"},
-              { text: 'WOType', align: 'left',  value: 'WorkOrderType', width:"1%"},
-              { text: 'ItemNo', align: 'left',  value: 'ItemNumber', width:"1%"},
-              { text: 'WODate', align: 'left',  value: 'wodate', width:"1%"},
-              { text: 'PlanStrtDt', align: 'left',  value: 'plnstrtdate', width:"1%"},
-              { text: 'PlanCompltDt', align: 'left',  value: 'plncompltdate', width:"1%"},
-              { text: 'SupplyTyp', align: 'left',  value: 'SupplyTypeDescription', width:"1%"},
-              { text: 'WorkMethodCode', align: 'left',  value: 'WorkMethodCode', width:"1%"},
+               { text: 'PartyNumber', value: 'PartyNumber', sortable: false , width:"1%"},
+               { text: 'PartyUniqueName', align: 'left',  value: 'PartyUniqueName', width:"3%"},
+               { text: 'PrimaryContactEmail', align: 'left',  value: 'PrimaryContactEmail', width:"3%"},
+               //{ text: 'BUName', align: 'left',  value: 'BusinessUnitName', width:"1%"},
+               { text: 'FormattedAddressRL', align: 'left',  value: 'FormattedAddress', width:"5%"},
+                { text: 'Supplier', align: 'left',  value: 'Supplier', width:"5%"},
+                 { text: 'SupplierSite', align: 'left',  value: 'SupplierSite', width:"5%"},
+              { text: 'Ordered', align: 'left',  value: 'Ordered', width:"1%"},
+              { text: 'TotalTax', align: 'left',  value: 'TotalTax', width:"1%"},
+              { text: 'Total', align: 'left',  value: 'Total', width:"1%"},
+              //{ text: 'OrdKey', align: 'left',  value: 'OrderKey', width:"1%"},
               //{ text: 'Postcd', align: 'left',  value: 'POSTCODE'},
               //{ text: 'Contact', align: 'left',  value: 'CONTACT'},
              // { text: 'Due Dt', align: 'left',  value: 'DELIVERY_DATE'},
@@ -97,6 +86,17 @@ export default
                //{ text: 'Action', value: 'actions', sortable: false , width:"1%"},
             ],
 
+        phoneRules:[
+            (v) => /^\d+$/.test(v)||'Required and must be in numbers',
+            (v) => (v && v.length >8) || 'Must be more than 8 digits '
+         ],
+         fieldRules: [ (v) => (v && v.length >2)|| 'Required & should be more than 2 chars ' ],
+         postRules:[
+            (v) => /^\d+$/.test(v)||'Required and must be in numbers',
+            (v) => (v && v.length >2) || 'Must be more than 2 digits '
+         ],
+         fieldRules: [ (v) => (v && v.length >2)|| 'Required & should be more than 2 chars ' ],
+        // formx:{sjcid:'',v},
 
     }
           },
@@ -110,10 +110,10 @@ export default
         },
   methods: {  
     //--------------------------------get one order--------------
-    getwomaterial(x){
-console.log('getmaterial-',x)
+    checkorder(x){
+console.log('checkorder-',x)
 this.loading=true;
- /*this.$store.dispatch('getorder', x.OrderKey)
+ this.$store.dispatch('getorder', x.OrderKey)
                         .then((response) =>  { //console.log('order-response=',response);  
                                 this.loading=false;   
                                this.$router.push({   name: 'order'//,params: {data1: res }  
@@ -121,19 +121,18 @@ this.loading=true;
                                 })     
                         .catch((error) => {   this.loading=false; 
                         console.log('error-',error)     
-                        });*/
+                        });
 
 //------------------------------------
-          axios.get(`/take5/getwomaterial/`,{params:{'WorkOrderId':x.WorkOrderId}})
-          .then((res) => { console.log('womaterial response',res.data)  
+        /*  axios.get(`/take5/getorder/`,{params:{'orderkey':x.OrderKey}})
+          .then((res) => { console.log('one order response',res.data)  
                                        this.loading=false; 
-                     //this.$router.push({   name: 'order'//,params: {data1: res }         });
+                     this.$router.push({   name: 'order'//,params: {data1: res } 
+                      });
                                        })
-                    .catch(err=>{ console.log('one order-err=', err) ; this.loading=false; }) 
+                    .catch(err=>{ console.log('one order-err=', err) ; this.loading=false; }) */
                     //--------------
           },
-
-          //----------------------------------
             paginate1(e)
             { console.log('paginate-$event',e);
             //axios.get(`http://127.0.0.1:8000/api/saw/getsawschedules?page='+${e.page}`,{})
@@ -142,10 +141,10 @@ this.loading=true;
             this.loading=true;
              //axios.get(`${axios.defaults.baseURL}/getjobs?page=${e.page}`,
              //axios.get(`${axios.defaults.baseURL}/take5/getjobs?offset=${e.pageStart}`,
-             axios.get(`/take5/workorders?offset=${e.pageStart}`,
+             axios.get(`/take5/getaccounts?offset=${e.pageStart}`,
              //{params:{'per_page':e.itemsPerPage}}
              )
-                    .then((res) => { console.log('pagi-getjobs response',res.data.items)  
+                    .then((res) => { console.log('pagi-getaccounts response',res.data.items)  
                                       this.sawflags=res.data; this.loading=false;   })
                     .catch(err=>{ console.log('paginate-err=', err) ; this.loading=false; })
                 }
@@ -155,16 +154,16 @@ this.loading=true;
               let x=this.search;
               if(x.length>2){ this.loading=true;
                  //axios.get(`${axios.defaults.baseURL}/take5/getjobs?search=${x}`)
-                  axios.get(`/take5/workorders?search=${x}`)
-                    .then((res) => { console.log('sawsc search res1=',res.data)  
+                  axios.get(`/take5/getaccounts?search=${x}`)
+                    .then((res) => { console.log('getaccounts search res1=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
-                    .catch(err=>{ console.log('sawsc search err1=', err); this.loading=false;  })
+                    .catch(err=>{ console.log('getaccounts search err1=', err); this.loading=false;  })
                 }
               if(x.length<=0){ this.loading=true;
-                 axios.get(`/take5/workorders`)
-                    .then((res) => { console.log('sawsc search res2=',res.data)  
+                 axios.get(`/take5/getaccounts`)
+                    .then((res) => { console.log('getaccounts search res2=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
-                    .catch(err=>{ console.log('sawsc search err2=', err) ; this.loading=false; })
+                    .catch(err=>{ console.log('getaccounts search err2=', err) ; this.loading=false; })
               }
 
                 }
@@ -175,16 +174,16 @@ this.loading=true;
               let x=this.search;
               if(x.length>2){ this.loading=true;
                  //axios.get(`${axios.defaults.baseURL}/take5/getjobs?search=${x}`)
-                  axios.get(`/take5/workorders?search=${x}`)
-                    .then((res) => { console.log('sawsc search res1=',res.data)  
+                  axios.get(`/take5/getaccounts?search=${x}`)
+                    .then((res) => { console.log('getpurchaseorders search res1=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
-                    .catch(err=>{ console.log('sawsc search err1=', err); this.loading=false;  })
+                    .catch(err=>{ console.log('getpurchaseorders search err1=', err); this.loading=false;  })
                 }
               if(x.length<=0){ this.loading=true;
-                 axios.get(`/take5/workorders`)
-                    .then((res) => { console.log('sawsc search res2=',res.data)  
+                 axios.get(`/take5/getaccounts`)
+                    .then((res) => { console.log('getaccounts search res2=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
-                    .catch(err=>{ console.log('sawsc search err2=', err) ; this.loading=false; })
+                    .catch(err=>{ console.log('getaccounts search err2=', err) ; this.loading=false; })
               }
             },
 
