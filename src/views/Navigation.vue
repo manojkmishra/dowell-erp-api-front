@@ -100,6 +100,11 @@ export default {
           },
           { action: 'mdi-api', title: 'Manufacturing',hasMulSub: true,items: [
               { title: 'workOrders', route:'/workorders' },
+              { title: 'WODispatchList', route:'/wodispatchlist' },
+              { title: 'workAreas', route:'/workareas' },
+              { title: 'workCenters', route:'/workcenters' },
+              { title: 'ProductionResources', route:'/productionresources' },
+              { title: 'StandardOperations', route:'/standardoperations' },
              ],
           },
           { action: 'mdi-api', title: 'Procurement',hasMulSub: true,items: [
@@ -107,7 +112,7 @@ export default {
               { title: 'POSchedules', route:'/poschedules' },
              ],
           },
-          { action: 'mdi-api', title: 'CX APIs',hasMulSub: true,items: [
+          { action: 'mdi-api', title: 'CRM',hasMulSub: true,items: [
               { title: 'Accounts', route:'/accounts' },
              ],
           },

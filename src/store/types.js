@@ -8,4 +8,5 @@ export const GET_PIC  = 'GET_PIC';
 export const GET_PDF  = 'GET_PDF';
 export const SET_SELECTED_SJC  = 'SET_SELECTED_SJC';
 export const GET_ORDER  = 'GET_ORDER';
+export const GET_WOMATERIAL  = 'GET_WOMATERIAL';
 

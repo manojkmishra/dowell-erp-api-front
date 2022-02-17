@@ -5,7 +5,7 @@ import * as api from '../config';
 export default
 {
   state: {getjobs:null,getjobtypes:null, jobtypeoptions:[],selectedsjc:null, 
-      getc19:null,getuserjobs:null,gettk5:null,getpic:null,getpdf:null,getorder:null,
+      getc19:null,getuserjobs:null,gettk5:null,getpic:null,getpdf:null,getorder:null,getwomaterial:null,
         },
   getters:{
   },
@@ -14,6 +14,10 @@ export default
     [types.GET_JOBS ] (state, payload) 
     { state.getjobs = payload.getjobs;
      console.log('/store/saw.js-types.GET_JOBS state=', state);
+    },
+    [types.GET_WOMATERIAL ] (state, payload) 
+    { state.getwomaterial = payload.getwomaterial;
+     console.log('/store/saw.js-types.GET_WOMATERIAL state=', state);
     },
     [types.GET_ORDER ] (state, payload) 
     { state.getorder = payload.getorder;
@@ -74,6 +78,14 @@ export default
     let res=axios.get(`/take5/getorder`,{params:{'orderkey':formData}})
     .then(res => {
           commit({type:types.GET_ORDER ,  getorder: res} )
+      } )
+      return res;    
+    },
+    async getwomaterial ({commit,dispatch},formData) 
+    { //let res= await axios.get(api.getorder,{params:{'orderkey':formData}});  
+    let res=axios.get(`/take5/getwomaterial`,{params:{'WorkOrderId':formData}})
+    .then(res => {
+          commit({type:types.GET_WOMATERIAL ,  getwomaterial: res} )
       } )
       return res;    
     },

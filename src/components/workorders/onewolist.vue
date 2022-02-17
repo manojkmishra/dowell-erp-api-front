@@ -3,17 +3,17 @@
 <v-simple-table dense>
      <template v-slot:top>
         <v-toolbar  color="light-blue darken-3" dark dense>
-          <v-toolbar-title>Order</v-toolbar-title>
+          <v-toolbar-title>Work Order ItemNumber</v-toolbar-title>
           <v-divider class="mx-4" inset vertical ></v-divider>
-          <v-toolbar-title>{{order.OrderNumber}} </v-toolbar-title>
+          <v-toolbar-title>{{data2.ItemNumber}} </v-toolbar-title>
           <v-spacer/>
-         <v-btn  id="btn-cutselected" small  color="blue darken-4" rounded dark   @click.prevent="edit">Save</v-btn>
+         <v-btn  id="btn-cutselected" small disabled color="blue darken-4" rounded dark   @click.prevent="edit">Save</v-btn>
         </v-toolbar>
          </template>   
       
 
 <div>
-  <tree-view  :data="order" :options="{maxDepth: 3 ,modifiable: true,rootObjectKey:'data'}" @change-data="onChangeData"></tree-view>
+  <tree-view  :data="data2" :options="{maxDepth: 3 ,modifiable: true,rootObjectKey:'data'}" @change-data="onChangeData"></tree-view>
 </div>
    </v-simple-table> 
 </div>
@@ -29,11 +29,11 @@ import { mapGetters, mapState, mapActions} from 'vuex';
 import { diff, addedDiff, deletedDiff, updatedDiff, detailedDiff } from 'deep-object-diff';
 import axios from "axios";
 export default {
-  // props: ['data1'],
+  props: ['data2'],
 data(){return{loading:'',changedobj:{} }},
    computed:{
   ...mapState({
-            order: state => state.jobs.getorder.data,
+           // order: state => state.jobs.getorder.data,
         }),
    },
    methods: {

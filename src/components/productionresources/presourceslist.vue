@@ -13,7 +13,7 @@
     <template v-slot:top >
 
         <v-toolbar flat dark dense color="blue darken-4">
-            <v-toolbar-title>workOrders</v-toolbar-title>
+            <v-toolbar-title>ProductionResources</v-toolbar-title>
              <v-divider class="mx-4" inset vertical ></v-divider>
          <!--  <v-toolbar-title class="pr-4" >ADMIN USER - {{user.name}} </v-toolbar-title>   -->         
             <v-spacer></v-spacer>
@@ -21,11 +21,10 @@
 
         </v-toolbar>
     </template>
-    <template v-slot:item.action1="{ item }"><!--1=qd,2-inpr,3-complt----->
-       <v-btn ripple small :loading="loading" color="teal " rounded dark   @click.prevent="getonewo(item)"><v-icon >mdi-mouse-move-up</v-icon></v-btn>
-    </template>
     <template v-slot:item.action="{ item }"><!--1=qd,2-inpr,3-complt----->
-       <v-btn ripple small :loading="loading" color="blue " rounded dark   @click.prevent="getwomaterial(item)"><v-icon >mdi-mouse-move-up</v-icon></v-btn>
+     
+       <v-btn ripple small :loading="loading" color="teal " rounded dark   @click.prevent="getwomaterial(item)"><v-icon >mdi-mouse-move-up</v-icon></v-btn>
+       
     </template>
         <template v-slot:item.createdat="{ item }" ><!--8,0=qd,9-inpr,12-complt----->
        <span>{{moment(item.CreationDate).format('DD-MM-YYYY, HH:mm')}}</span>
@@ -70,23 +69,22 @@ export default
               headers: [
              
               // { text: 'Select', value: 'action', sortable: false , width:"1%"},
-               { text: 'Details', value: 'action1', sortable: false , width:"1%"},
-                { text: 'ItemNo', align: 'left',  value: 'ItemNumber', width:"5%"},
-              // { text: 'WOId', align: 'left',  value: 'WorkOrderId', width:"1%"},
+               //{ text: 'Details', value: 'action', sortable: false , width:"1%"},
+                { text: 'ResourceId', align: 'left',  value: 'ResourceId', width:"1%"},
+              { text: 'ResourceName', align: 'left',  value: 'ResourceName', width:"1%"},
+                 { text: 'ResourceType', align: 'left',  value: 'ResourceType', width:"1%"},
+                  { text: 'UnitOfMeasure', align: 'left',  value: 'UnitOfMeasure', width:"1%"},
+               { text: 'OrganizationName', align: 'left',  value: 'OrganizationName', width:"1%"},
                 
-               { text: 'WONo', align: 'left',  value: 'WorkOrderNumber', width:"1%"},
-               { text: 'Description', align: 'left',  value: 'Description', width:"5%"},
-               { text: 'Material', value: 'action', sortable: false , width:"1%"},
-               { text: 'OrgName', align: 'left',  value: 'OrganizationName', width:"1%"},
-               { text: 'Qty', align: 'left',  value: 'PlannedStartQuantity', width:"1%"},
-              { text: 'UOM', align: 'left',  value: 'UnitOfMeasure', width:"1%"},
-               { text: 'Status', align: 'left',  value: 'WorkOrderStatusName', width:"1%"},
-              { text: 'WODate', align: 'left',  value: 'wodate', width:"1%"},
               
-              { text: 'PlanStrtDt', align: 'left',  value: 'plnstrtdate', width:"1%"},
-              { text: 'PlanCompltDt', align: 'left',  value: 'plncompltdate', width:"1%"},
-            
-              //{ text: 'Desc', align: 'left',  value: 'Description', width:"1%"},
+               { text: 'OrganizationCode', value: 'OrganizationCode', sortable: false , width:"1%"},
+              { text: 'OrganizationId', value: 'OrganizationId', sortable: false , width:"1%"},
+             
+             // { text: 'WODate', align: 'left',  value: 'wodate', width:"1%"},
+             // { text: 'PlanStrtDt', align: 'left',  value: 'plnstrtdate', width:"1%"},
+             // { text: 'PlanCompltDt', align: 'left',  value: 'plncompltdate', width:"1%"},
+            //  { text: 'SupplyTyp', align: 'left',  value: 'SupplyTypeDescription', width:"1%"},
+            //  { text: 'WorkMethodCode', align: 'left',  value: 'WorkMethodCode', width:"1%"},
               //{ text: 'Postcd', align: 'left',  value: 'POSTCODE'},
               //{ text: 'Contact', align: 'left',  value: 'CONTACT'},
              // { text: 'Due Dt', align: 'left',  value: 'DELIVERY_DATE'},
@@ -94,13 +92,13 @@ export default
               //{ text: 'BOM', align: 'left',  value: 'bom'},
               //{ text: 'Pics', value: 'pics',sortable: false },
               //{ text: 'PDF', value: 'pdfs',sortable: false },
-            //  { text: 'Status', value: 'Status' ,sortable: false, width:"1%"},
+             // { text: 'Status', value: 'Status' ,sortable: false, width:"1%"},
               //{ text: 'T5', value: 't5',sortable: false },
               //{ text: 'JC', value: 'jc', sortable: false },
-               { text: 'created_at', align: 'left', value: 'createdat',width:"3%"},
-               { text: 'updated_at', align: 'left',  value: 'updatedat', width:"3%"},
+              // { text: 'created_at', align: 'left', value: 'createdat',width:"3%"},
+              // { text: 'updated_at', align: 'left',  value: 'updatedat', width:"3%"},
              // { text: 'created_by', align: 'left',  value: 'createdby.name'},
-               { text: 'updated_by', align: 'left',  value: 'LastUpdatedBy', width:"1%"},
+              // { text: 'updated_by', align: 'left',  value: 'LastUpdatedBy', width:"1%"},
                //{ text: 'Action', value: 'actions', sortable: false , width:"1%"},
             ],
 
@@ -117,16 +115,13 @@ export default
         },
   methods: {  
     //--------------------------------get one order--------------
-
-    getonewo(x){
-              console.log('getonewo-',x)
-               this.$router.push({   name: 'wodetails',params: {data1: x }  
-                               });
-             // this.loading=true;
-              /*this.$store.dispatch('getonewo', x.WorkOrderId)
+    getwomaterial(x){
+console.log('getmaterial-',x)
+this.loading=true;
+ /*this.$store.dispatch('getorder', x.OrderKey)
                         .then((response) =>  { //console.log('order-response=',response);  
                                 this.loading=false;   
-                               this.$router.push({   name: 'wodetails'//,params: {data1: res }  
+                               this.$router.push({   name: 'order'//,params: {data1: res }  
                                });
                                 })     
                         .catch((error) => {   this.loading=false; 
@@ -134,37 +129,13 @@ export default
                         });*/
 
 //------------------------------------
-         /* axios.get(`/take5/getwomaterial/`,{params:{'WorkOrderId':x.WorkOrderId}})
+          axios.get(`/take5/getpresources/`,{params:{'WorkOrderId':x.WorkOrderId}})
           .then((res) => { console.log('womaterial response',res.data)  
                                        this.loading=false; 
                      //this.$router.push({   name: 'order'//,params: {data1: res }         });
                                        })
                     .catch(err=>{ console.log('one order-err=', err) ; this.loading=false; }) 
                     //--------------
-                    */
-          },
-    getwomaterial(x){
-console.log('getmaterial-',x)
-this.loading=true;
-              this.$store.dispatch('getwomaterial', x.WorkOrderId)
-                        .then((response) =>  { //console.log('order-response=',response);  
-                                this.loading=false;   
-                               this.$router.push({   name: 'womaterial'//,params: {data1: res }  
-                               });
-                                })     
-                        .catch((error) => {   this.loading=false; 
-                        console.log('error-',error)     
-                        });
-
-//------------------------------------
-         /* axios.get(`/take5/getwomaterial/`,{params:{'WorkOrderId':x.WorkOrderId}})
-          .then((res) => { console.log('womaterial response',res.data)  
-                                       this.loading=false; 
-                     //this.$router.push({   name: 'order'//,params: {data1: res }         });
-                                       })
-                    .catch(err=>{ console.log('one order-err=', err) ; this.loading=false; }) 
-                    //--------------
-                    */
           },
 
           //----------------------------------
@@ -176,10 +147,10 @@ this.loading=true;
             this.loading=true;
              //axios.get(`${axios.defaults.baseURL}/getjobs?page=${e.page}`,
              //axios.get(`${axios.defaults.baseURL}/take5/getjobs?offset=${e.pageStart}`,
-             axios.get(`/take5/workorders?offset=${e.pageStart}`,
+             axios.get(`/take5/getpresources?offset=${e.pageStart}`,
              //{params:{'per_page':e.itemsPerPage}}
              )
-                    .then((res) => { console.log('pagi-getjobs response',res.data.items)  
+                    .then((res) => { console.log('pagi-getpresources response',res.data.items)  
                                       this.sawflags=res.data; this.loading=false;   })
                     .catch(err=>{ console.log('paginate-err=', err) ; this.loading=false; })
                 }
@@ -189,13 +160,13 @@ this.loading=true;
               let x=this.search;
               if(x.length>2){ this.loading=true;
                  //axios.get(`${axios.defaults.baseURL}/take5/getjobs?search=${x}`)
-                  axios.get(`/take5/workorders?search=${x}`)
+                  axios.get(`/take5/getpresources?search=${x}`)
                     .then((res) => { console.log('sawsc search res1=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
                     .catch(err=>{ console.log('sawsc search err1=', err); this.loading=false;  })
                 }
               if(x.length<=0){ this.loading=true;
-                 axios.get(`/take5/workorders`)
+                 axios.get(`/take5/getpresources`)
                     .then((res) => { console.log('sawsc search res2=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
                     .catch(err=>{ console.log('sawsc search err2=', err) ; this.loading=false; })
@@ -209,13 +180,13 @@ this.loading=true;
               let x=this.search;
               if(x.length>2){ this.loading=true;
                  //axios.get(`${axios.defaults.baseURL}/take5/getjobs?search=${x}`)
-                  axios.get(`/take5/workorders?search=${x}`)
+                  axios.get(`/take5/getpresources?search=${x}`)
                     .then((res) => { console.log('sawsc search res1=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
                     .catch(err=>{ console.log('sawsc search err1=', err); this.loading=false;  })
                 }
               if(x.length<=0){ this.loading=true;
-                 axios.get(`/take5/workorders`)
+                 axios.get(`/take5/getpresources`)
                     .then((res) => { console.log('sawsc search res2=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
                     .catch(err=>{ console.log('sawsc search err2=', err) ; this.loading=false; })

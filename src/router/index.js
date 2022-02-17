@@ -10,12 +10,20 @@ import buyeruser from '../components/User/Buyer/UserList.vue'
 import Jobs from '../components/Jobs/Jobs.vue'
 import Order from '../components/Jobs/Order.vue'
 import Pricelist from '../components/pricelist/price.vue'
-import WorkOrders from '../components/workorders/price.vue'
+import WorkOrders from '../components/workorders/wo.vue'
 import womaterial from '../components/workorders/womaterial.vue'
+import womaterialdetails from '../components/workorders/onematerial.vue'
+
+import wodetails from '../components/workorders/onewo.vue'
 import erpusers from '../components/erpusers/erpusers.vue'
 import purchaseorders from '../components/purchaseorders/po.vue'
 import poschedules from '../components/poschedules/po.vue'
 import accounts from '../components/accounts/accounts.vue'
+import workareas from '../components/workareas/wareas.vue'
+import workcenters from '../components/workcenters/wcenters.vue'
+import presources from '../components/productionresources/presources.vue'
+import stndoprn from '../components/stndoprn/stndoprn.vue'
+import wodispatchlist from '../components/wodispatchlist/wodispatch.vue'
 
 import Jobtype from '../components/Jobtype/Jobtype.vue'
 import status from '@/components/status/status.vue'
@@ -41,10 +49,17 @@ const routes = [
   {path:'/pricelists',name:'pricelists',component: Pricelist,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/workorders',name:'workorders',component: WorkOrders,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/womaterial',name:'womaterial',component: womaterial,meta: {middleware: [Middlewares.auth]}  } ,
+  {path:'/wodetails',name:'wodetails',component: wodetails,props: true,meta: {middleware: [Middlewares.auth]}  } ,
+  {path:'/womaterialdetails',name:'womaterialdetails',component: womaterialdetails,props: true,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/erpusers',name:'erpusers',component: erpusers,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/purchaseorders',name:'purchaseorders',component: purchaseorders,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/poschedules',name:'poschedules',component: poschedules,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/accounts',name:'accounts',component: accounts,meta: {middleware: [Middlewares.auth]}  } ,
+  {path:'/workareas',name:'workareas',component: workareas,meta: {middleware: [Middlewares.auth]}  } ,
+  {path:'/productionresources',name:'presources',component: presources,meta: {middleware: [Middlewares.auth]}  } ,
+  {path:'/standardoperations',name:'stndoprn',component: stndoprn,meta: {middleware: [Middlewares.auth]}  } ,
+  {path:'/wodispatchlist',name:'wodispatchlist',component: wodispatchlist,meta: {middleware: [Middlewares.auth]}  } ,
+  {path:'/workcenters',name:'workcenters',component: workcenters,meta: {middleware: [Middlewares.auth]}  } ,
   //{path:'/jobtype',name:'jobtype',component: Jobtype,meta: {middleware: [Middlewares.auth]}  } ,
   //{path:'/status',name:'status',component: status,meta: {middleware: [Middlewares.auth]}  } ,
   //{path:'/flags',name:'flags',component: flags,meta: {middleware: [Middlewares.auth]}  } , 
