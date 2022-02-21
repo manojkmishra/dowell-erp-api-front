@@ -8,6 +8,10 @@ export const edituser = apiDomain+ '/take5/edituser';
 export const getjobs = apiDomain+ '/take5/getjobs';
 export const getorder = apiDomain+ '/take5/getorder';
 export const getwomaterial = apiDomain+ '/take5/getwomaterial';
+export const getopmaterial = apiDomain+ '/take5/getopresources';
+export const getopresources = apiDomain+ '/take5/getopmaterial';
+export const getwooperation = apiDomain+ '/take5/getwooperation';
+
 
 export const editorder = apiDomain+ '/take5/editorder';
 export const getuserjobs = apiDomain+ '/take5/getuserjobs';

@@ -27,6 +27,9 @@
     <template v-slot:item.action="{ item }"><!--1=qd,2-inpr,3-complt----->
        <v-btn ripple small :loading="loading" color="blue " rounded dark   @click.prevent="getwomaterial(item)"><v-icon >mdi-mouse-move-up</v-icon></v-btn>
     </template>
+     <template v-slot:item.action2="{ item }"><!--1=qd,2-inpr,3-complt----->
+       <v-btn ripple small :loading="loading" color="green" rounded dark   @click.prevent="getwoOperation(item)"><v-icon >mdi-mouse-move-up</v-icon></v-btn>
+    </template>
         <template v-slot:item.createdat="{ item }" ><!--8,0=qd,9-inpr,12-complt----->
        <span>{{moment(item.CreationDate).format('DD-MM-YYYY, HH:mm')}}</span>
     </template>
@@ -76,7 +79,8 @@ export default
                 
                { text: 'WONo', align: 'left',  value: 'WorkOrderNumber', width:"1%"},
                { text: 'Description', align: 'left',  value: 'Description', width:"5%"},
-               { text: 'Material', value: 'action', sortable: false , width:"1%"},
+               { text: 'Materials', value: 'action', sortable: false , width:"1%"},
+               { text: 'Operations', value: 'action2', sortable: false , width:"1%"},
                { text: 'OrgName', align: 'left',  value: 'OrganizationName', width:"1%"},
                { text: 'Qty', align: 'left',  value: 'PlannedStartQuantity', width:"1%"},
               { text: 'UOM', align: 'left',  value: 'UnitOfMeasure', width:"1%"},
@@ -85,18 +89,7 @@ export default
               
               { text: 'PlanStrtDt', align: 'left',  value: 'plnstrtdate', width:"1%"},
               { text: 'PlanCompltDt', align: 'left',  value: 'plncompltdate', width:"1%"},
-            
-              //{ text: 'Desc', align: 'left',  value: 'Description', width:"1%"},
-              //{ text: 'Postcd', align: 'left',  value: 'POSTCODE'},
-              //{ text: 'Contact', align: 'left',  value: 'CONTACT'},
-             // { text: 'Due Dt', align: 'left',  value: 'DELIVERY_DATE'},
-             // { text: 'schedule_saw', align: 'left',  value: 'schedule_saw'},
-              //{ text: 'BOM', align: 'left',  value: 'bom'},
-              //{ text: 'Pics', value: 'pics',sortable: false },
-              //{ text: 'PDF', value: 'pdfs',sortable: false },
-            //  { text: 'Status', value: 'Status' ,sortable: false, width:"1%"},
-              //{ text: 'T5', value: 't5',sortable: false },
-              //{ text: 'JC', value: 'jc', sortable: false },
+
                { text: 'created_at', align: 'left', value: 'createdat',width:"3%"},
                { text: 'updated_at', align: 'left',  value: 'updatedat', width:"3%"},
              // { text: 'created_by', align: 'left',  value: 'createdby.name'},
@@ -144,8 +137,8 @@ export default
                     */
           },
     getwomaterial(x){
-console.log('getmaterial-',x)
-this.loading=true;
+            console.log('getmaterial-',x)
+              this.loading=true;
               this.$store.dispatch('getwomaterial', x.WorkOrderId)
                         .then((response) =>  { //console.log('order-response=',response);  
                                 this.loading=false;   
@@ -155,17 +148,20 @@ this.loading=true;
                         .catch((error) => {   this.loading=false; 
                         console.log('error-',error)     
                         });
-
-//------------------------------------
-         /* axios.get(`/take5/getwomaterial/`,{params:{'WorkOrderId':x.WorkOrderId}})
-          .then((res) => { console.log('womaterial response',res.data)  
-                                       this.loading=false; 
-                     //this.$router.push({   name: 'order'//,params: {data1: res }         });
-                                       })
-                    .catch(err=>{ console.log('one order-err=', err) ; this.loading=false; }) 
-                    //--------------
-                    */
           },
+        getwoOperation(x){
+              console.log('getoperations-',x)
+              this.loading=true;
+              this.$store.dispatch('getwooperation', x.WorkOrderId)
+                        .then((response) =>  { //console.log('order-response=',response);  
+                                this.loading=false;   
+                               this.$router.push({   name: 'wooperation'//,params: {data1: res }  
+                               });
+                                })     
+                        .catch((error) => {   this.loading=false; 
+                        console.log('error-',error)     
+                        });
+        },
 
           //----------------------------------
             paginate1(e)

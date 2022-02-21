@@ -6,6 +6,7 @@ export default
 {
   state: {getjobs:null,getjobtypes:null, jobtypeoptions:[],selectedsjc:null, 
       getc19:null,getuserjobs:null,gettk5:null,getpic:null,getpdf:null,getorder:null,getwomaterial:null,
+      getwooperation:null,getwomaterial:null,getopresources:null
         },
   getters:{
   },
@@ -18,6 +19,20 @@ export default
     [types.GET_WOMATERIAL ] (state, payload) 
     { state.getwomaterial = payload.getwomaterial;
      console.log('/store/saw.js-types.GET_WOMATERIAL state=', state);
+    },
+    [types.GET_OPMATERIAL ] (state, payload) 
+    {  state.getopmaterial=null;
+          state.getopmaterial = payload.getopmaterial;
+     console.log('/store/saw.js-types.GET_OPMATERIAL state=', state);
+    },
+    [types.GET_OPRESOURCES ] (state, payload) 
+    {  state.getopresources=null;
+          state.getopresources = payload.getopresources;
+     console.log('/store/saw.js-types.GET_OPRESOURCES state=', state);
+    },
+    [types.GET_WOOPERATION ] (state, payload) 
+    { state.getwooperation = payload.getwooperation;
+     console.log('/store/saw.js-types.GET_WOOPERATION state=', state);
     },
     [types.GET_ORDER ] (state, payload) 
     { state.getorder = payload.getorder;
@@ -86,6 +101,30 @@ export default
     let res=axios.get(`/take5/getwomaterial`,{params:{'WorkOrderId':formData}})
     .then(res => {
           commit({type:types.GET_WOMATERIAL ,  getwomaterial: res} )
+      } )
+      return res;    
+    },
+    async getopmaterial ({commit,dispatch},formData) 
+    { //let res= await axios.get(api.getorder,{params:{'orderkey':formData}});  
+    let res=axios.get(`/take5/getopmaterial`,{params:{'WorkOrderId':formData.WorkOrderId, 'WorkOrderOperationId': formData.WorkOrderOperationId}})
+    .then(res => { 
+          commit({type:types.GET_OPMATERIAL ,  getopmaterial: res} )
+      } )
+      return res;    
+    },
+    async getopresources ({commit,dispatch},formData) 
+    { //let res= await axios.get(api.getorder,{params:{'orderkey':formData}});  
+    let res=axios.get(`/take5/getopresources`,{params:{'WorkOrderId':formData.WorkOrderId, 'WorkOrderOperationId': formData.WorkOrderOperationId}})
+    .then(res => { 
+          commit({type:types.GET_OPRESOURCES ,  getopresources: res} )
+      } )
+      return res;    
+    },
+    async getwooperation ({commit,dispatch},formData) 
+    { //let res= await axios.get(api.getorder,{params:{'orderkey':formData}});  
+    let res=axios.get(`/take5/getwooperation`,{params:{'WorkOrderId':formData}})
+    .then(res => {
+          commit({type:types.GET_WOOPERATION ,  getwooperation: res} )
       } )
       return res;    
     },

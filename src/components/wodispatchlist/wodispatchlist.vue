@@ -21,10 +21,8 @@
 
         </v-toolbar>
     </template>
-    <template v-slot:item.action="{ item }"><!--1=qd,2-inpr,3-complt----->
-     
-       <v-btn ripple small :loading="loading" color="teal " rounded dark   @click.prevent="getwomaterial(item)"><v-icon >mdi-mouse-move-up</v-icon></v-btn>
-       
+    <template v-slot:item.action1="{ item }"><!--1=qd,2-inpr,3-complt----->
+       <v-btn ripple small :loading="loading" color="teal " rounded dark   @click.prevent="getonewo(item)"><v-icon >mdi-mouse-move-up</v-icon></v-btn>
     </template>
         <template v-slot:item.createdat="{ item }" ><!--8,0=qd,9-inpr,12-complt----->
        <span>{{moment(item.CreationDate).format('DD-MM-YYYY, HH:mm')}}</span>
@@ -68,7 +66,7 @@ export default
       editedIndex: -1, sawflags:[],// inputRules:[v=>v.length>=3||'Min len is 3 chars'],
               headers: [
              
-              // { text: 'Select', value: 'action', sortable: false , width:"1%"},
+               { text: 'Details', value: 'action1', sortable: false , width:"1%"},
                //{ text: 'Details', value: 'action', sortable: false , width:"1%"},
                 { text: 'OrganizationName', align: 'left',  value: 'OrganizationName', width:"1%"},
               { text: 'WorkAreaCode', align: 'left',  value: 'WorkAreaCode', width:"1%"},
@@ -115,6 +113,11 @@ export default
                         })*/
         },
   methods: {  
+     getonewo(x){
+              console.log('getonewo-',x)
+               this.$router.push({   name: 'wodispatchlistdetails',params: {data1: x }  
+                               });
+     },
     //--------------------------------get one order--------------
     getwomaterial(x){
 console.log('getmaterial-',x)

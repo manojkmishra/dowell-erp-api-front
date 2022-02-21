@@ -12,7 +12,19 @@ import Order from '../components/Jobs/Order.vue'
 import Pricelist from '../components/pricelist/price.vue'
 import WorkOrders from '../components/workorders/wo.vue'
 import womaterial from '../components/workorders/womaterial.vue'
+import opmaterial from '../components/workorders/opmaterial.vue'
+import opresource from '../components/workorders/opresource.vue'
+import wooperation from '../components/workorders/wooperation.vue'
+
+
 import womaterialdetails from '../components/workorders/onematerial.vue'
+import opmaterialdetails from '../components/workorders/oneopmaterial.vue'
+import wooperationdetails from '../components/workorders/oneoperation.vue'
+import opresourcedetails from '../components/workorders/oneopresource.vue'
+
+
+
+import wodispatchlistdetails from '../components/wodispatchlist/onewodispatchlist.vue'
 
 import wodetails from '../components/workorders/onewo.vue'
 import erpusers from '../components/erpusers/erpusers.vue'
@@ -25,11 +37,7 @@ import presources from '../components/productionresources/presources.vue'
 import stndoprn from '../components/stndoprn/stndoprn.vue'
 import wodispatchlist from '../components/wodispatchlist/wodispatch.vue'
 
-import Jobtype from '../components/Jobtype/Jobtype.vue'
-import status from '@/components/status/status.vue'
-import flags from '@/components/flags/flags.vue'
-import covid19 from '@/components/c19/c19.vue'
-import take5 from '@/components/t5/t5.vue'
+
 import picupload from '@/components/img/img.vue'
 import pdfupload from '@/components/pdf/pdf.vue'
 import Middlewares from "../middlewares/";
@@ -49,8 +57,14 @@ const routes = [
   {path:'/pricelists',name:'pricelists',component: Pricelist,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/workorders',name:'workorders',component: WorkOrders,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/womaterial',name:'womaterial',component: womaterial,meta: {middleware: [Middlewares.auth]}  } ,
+  {path:'/opmaterial',name:'opmaterial',component: opmaterial,meta: {middleware: [Middlewares.auth]}  } ,
+  {path:'/opresource',name:'opresource',component: opresource,meta: {middleware: [Middlewares.auth]}  } ,
+  {path:'/wooperation',name:'wooperation',component: wooperation,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/wodetails',name:'wodetails',component: wodetails,props: true,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/womaterialdetails',name:'womaterialdetails',component: womaterialdetails,props: true,meta: {middleware: [Middlewares.auth]}  } ,
+  {path:'/opmaterialdetails',name:'opmaterialdetails',component: opmaterialdetails,props: true,meta: {middleware: [Middlewares.auth]}  } ,
+  {path:'/wooperationdetails',name:'wooperationdetails',component: wooperationdetails,props: true,meta: {middleware: [Middlewares.auth]}  } ,
+  {path:'/opresourcedetails',name:'opresourcedetails',component: opresourcedetails,props: true,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/erpusers',name:'erpusers',component: erpusers,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/purchaseorders',name:'purchaseorders',component: purchaseorders,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/poschedules',name:'poschedules',component: poschedules,meta: {middleware: [Middlewares.auth]}  } ,
@@ -59,6 +73,7 @@ const routes = [
   {path:'/productionresources',name:'presources',component: presources,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/standardoperations',name:'stndoprn',component: stndoprn,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/wodispatchlist',name:'wodispatchlist',component: wodispatchlist,meta: {middleware: [Middlewares.auth]}  } ,
+  {path:'/wodispatchlistdetails',name:'wodispatchlistdetails',component: wodispatchlistdetails,props: true,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/workcenters',name:'workcenters',component: workcenters,meta: {middleware: [Middlewares.auth]}  } ,
   //{path:'/jobtype',name:'jobtype',component: Jobtype,meta: {middleware: [Middlewares.auth]}  } ,
   //{path:'/status',name:'status',component: status,meta: {middleware: [Middlewares.auth]}  } ,

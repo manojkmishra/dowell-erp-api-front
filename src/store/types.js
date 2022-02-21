@@ -9,4 +9,8 @@ export const GET_PDF  = 'GET_PDF';
 export const SET_SELECTED_SJC  = 'SET_SELECTED_SJC';
 export const GET_ORDER  = 'GET_ORDER';
 export const GET_WOMATERIAL  = 'GET_WOMATERIAL';
+export const GET_OPMATERIAL  = 'GET_OPMATERIAL';
+export const GET_OPRESOURCES  = 'GET_OPRESOURCES';
+export const GET_WOOPERATION  = 'GET_WOOPERATION';
+
 
