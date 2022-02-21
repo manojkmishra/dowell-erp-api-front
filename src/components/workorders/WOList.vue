@@ -30,6 +30,9 @@
      <template v-slot:item.action2="{ item }"><!--1=qd,2-inpr,3-complt----->
        <v-btn ripple small :loading="loading" color="green" rounded dark   @click.prevent="getwoOperation(item)"><v-icon >mdi-mouse-move-up</v-icon></v-btn>
     </template>
+         <template v-slot:item.action3="{ item }"><!--1=qd,2-inpr,3-complt----->
+       <v-btn ripple small :loading="loading" color="purple" rounded dark   @click.prevent="getworeservation(item)"><v-icon >mdi-mouse-move-up</v-icon></v-btn>
+    </template>
         <template v-slot:item.createdat="{ item }" ><!--8,0=qd,9-inpr,12-complt----->
        <span>{{moment(item.CreationDate).format('DD-MM-YYYY, HH:mm')}}</span>
     </template>
@@ -47,10 +50,6 @@
        <span>{{moment(item.PlannedCompletionDate).format('DD-MM-YYYY, HH:mm')}}</span>
     </template>
 
-    <template v-slot:item.actions="{ item }">
-      <v-icon medium color="blue darken-2" class="mr-2" @click="editItem(item)" >mdi-pencil</v-icon>
-      <v-icon medium color="red" @click="deleteItem(item)" >mdi-delete</v-icon>
-    </template>
     <template v-slot:no-data>
       <div></div> <!----show nothing when no data -->
     </template>
@@ -81,7 +80,8 @@ export default
                { text: 'Description', align: 'left',  value: 'Description', width:"5%"},
                { text: 'Materials', value: 'action', sortable: false , width:"1%"},
                { text: 'Operations', value: 'action2', sortable: false , width:"1%"},
-               { text: 'OrgName', align: 'left',  value: 'OrganizationName', width:"1%"},
+                { text: 'Reservation', value: 'action3', sortable: false , width:"1%"},
+               //{ text: 'OrgName', align: 'left',  value: 'OrganizationName', width:"1%"},
                { text: 'Qty', align: 'left',  value: 'PlannedStartQuantity', width:"1%"},
               { text: 'UOM', align: 'left',  value: 'UnitOfMeasure', width:"1%"},
                { text: 'Status', align: 'left',  value: 'WorkOrderStatusName', width:"1%"},
@@ -162,7 +162,18 @@ export default
                         console.log('error-',error)     
                         });
         },
-
+        getworeservation(x){
+              console.log('getworeservation-',x)
+              this.loading=true;
+              this.$store.dispatch('getworeservation', x.WorkOrderId)
+                        .then((response) =>  { //console.log('order-response=',response);  
+                                this.loading=false;   
+                               this.$router.push({   name: 'woreservation'     });
+                                })     
+                        .catch((error) => {   this.loading=false; 
+                        console.log('error-',error)     
+                        });
+        },
           //----------------------------------
             paginate1(e)
             { console.log('paginate-$event',e);

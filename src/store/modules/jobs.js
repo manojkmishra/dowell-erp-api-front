@@ -6,7 +6,7 @@ export default
 {
   state: {getjobs:null,getjobtypes:null, jobtypeoptions:[],selectedsjc:null, 
       getc19:null,getuserjobs:null,gettk5:null,getpic:null,getpdf:null,getorder:null,getwomaterial:null,
-      getwooperation:null,getwomaterial:null,getopresources:null
+      getwooperation:null,getwomaterial:null,getopresources:null,getworeservation:null
         },
   getters:{
   },
@@ -33,6 +33,10 @@ export default
     [types.GET_WOOPERATION ] (state, payload) 
     { state.getwooperation = payload.getwooperation;
      console.log('/store/saw.js-types.GET_WOOPERATION state=', state);
+    },
+    [types.GET_WORESERVATION ] (state, payload) 
+    { state.getworeservation = payload.getworeservation;
+     console.log('/store/saw.js-types.GET_WORESERVATION state=', state);
     },
     [types.GET_ORDER ] (state, payload) 
     { state.getorder = payload.getorder;
@@ -125,6 +129,14 @@ export default
     let res=axios.get(`/take5/getwooperation`,{params:{'WorkOrderId':formData}})
     .then(res => {
           commit({type:types.GET_WOOPERATION ,  getwooperation: res} )
+      } )
+      return res;    
+    },
+    async getworeservation ({commit,dispatch},formData) 
+    { //let res= await axios.get(api.getorder,{params:{'orderkey':formData}});  
+    let res=axios.get(`/take5/getworeservation`,{params:{'WorkOrderId':formData}})
+    .then(res => {
+          commit({type:types.GET_WORESERVATION ,  getworeservation: res} )
       } )
       return res;    
     },

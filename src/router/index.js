@@ -15,9 +15,10 @@ import womaterial from '../components/workorders/womaterial.vue'
 import opmaterial from '../components/workorders/opmaterial.vue'
 import opresource from '../components/workorders/opresource.vue'
 import wooperation from '../components/workorders/wooperation.vue'
-
+import woreservation from '../components/workorders/woreservation.vue'
 
 import womaterialdetails from '../components/workorders/onematerial.vue'
+import woreservationdetails from '../components/workorders/onereservation.vue'
 import opmaterialdetails from '../components/workorders/oneopmaterial.vue'
 import wooperationdetails from '../components/workorders/oneoperation.vue'
 import opresourcedetails from '../components/workorders/oneopresource.vue'
@@ -60,8 +61,10 @@ const routes = [
   {path:'/opmaterial',name:'opmaterial',component: opmaterial,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/opresource',name:'opresource',component: opresource,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/wooperation',name:'wooperation',component: wooperation,meta: {middleware: [Middlewares.auth]}  } ,
+  {path:'/woreservation',name:'woreservation',component: woreservation,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/wodetails',name:'wodetails',component: wodetails,props: true,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/womaterialdetails',name:'womaterialdetails',component: womaterialdetails,props: true,meta: {middleware: [Middlewares.auth]}  } ,
+  {path:'/woreservationdetails',name:'woreservationdetails',component: woreservationdetails,props: true,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/opmaterialdetails',name:'opmaterialdetails',component: opmaterialdetails,props: true,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/wooperationdetails',name:'wooperationdetails',component: wooperationdetails,props: true,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/opresourcedetails',name:'opresourcedetails',component: opresourcedetails,props: true,meta: {middleware: [Middlewares.auth]}  } ,

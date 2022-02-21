@@ -11,7 +11,7 @@ export const getwomaterial = apiDomain+ '/take5/getwomaterial';
 export const getopmaterial = apiDomain+ '/take5/getopresources';
 export const getopresources = apiDomain+ '/take5/getopmaterial';
 export const getwooperation = apiDomain+ '/take5/getwooperation';
-
+export const getworeservation = apiDomain+ '/take5/getworeservation';
 
 export const editorder = apiDomain+ '/take5/editorder';
 export const getuserjobs = apiDomain+ '/take5/getuserjobs';
