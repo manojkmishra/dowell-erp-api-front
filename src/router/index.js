@@ -23,7 +23,9 @@ import opmaterialdetails from '../components/workorders/oneopmaterial.vue'
 import wooperationdetails from '../components/workorders/oneoperation.vue'
 import opresourcedetails from '../components/workorders/oneopresource.vue'
 
-
+import invoices from '../components/financials/invoice.vue'
+import invoiceholds from '../components/financials/invoiceholds.vue'
+import invoiceapprovals from '../components/financials/invoiceapprovals.vue'
 
 import wodispatchlistdetails from '../components/wodispatchlist/onewodispatchlist.vue'
 
@@ -56,6 +58,11 @@ const routes = [
   {path:'/orderlist',name:'orderlist',component: Jobs,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/order',name:'order',component: Order,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/pricelists',name:'pricelists',component: Pricelist,meta: {middleware: [Middlewares.auth]}  } ,
+
+  {path:'/invoices',name:'invoices',component: invoices,meta: {middleware: [Middlewares.auth]}  } ,
+  {path:'/invoiceholds',name:'invoiceholds',component: invoiceholds,meta: {middleware: [Middlewares.auth]}  } ,
+  {path:'/invoiceapprovals',name:'invoiceapprovals',component: invoiceapprovals,meta: {middleware: [Middlewares.auth]}  } ,
+
   {path:'/workorders',name:'workorders',component: WorkOrders,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/womaterial',name:'womaterial',component: womaterial,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/opmaterial',name:'opmaterial',component: opmaterial,meta: {middleware: [Middlewares.auth]}  } ,

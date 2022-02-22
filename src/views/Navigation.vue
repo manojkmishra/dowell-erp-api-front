@@ -116,8 +116,14 @@ export default {
               { title: 'Accounts', route:'/accounts' },
              ],
           },
-          { action: 'mdi-api', title: 'Common APIs',hasMulSub: true,items: [
+        /*  { action: 'mdi-api', title: 'Common APIs',hasMulSub: true,items: [
               { title: 'ERPUsers', route:'/erpusers' },
+             ],
+          },*/
+           { action: 'mdi-api', title: 'Financials',hasMulSub: true,items: [
+              { title: 'Invoices', route:'/invoices' },
+              { title: 'Invoiceholds', route:'/invoiceholds' },
+              { title: 'Invoiceapprovals', route:'/Invoiceapprovals' },
              ],
           },
           /*  { action: 'mdi-chart-bar', title: 'Charts',hasMulSub: true, items: [ { title: 'Bayswater', route:'test' }, ], },
