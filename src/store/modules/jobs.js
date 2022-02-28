@@ -6,7 +6,7 @@ export default
 {
   state: {getjobs:null,getjobtypes:null, jobtypeoptions:[],selectedsjc:null, 
       getc19:null,getuserjobs:null,gettk5:null,getpic:null,getpdf:null,getorder:null,getwomaterial:null,
-      getwooperation:null,getwomaterial:null,getopresources:null,getworeservation:null
+      getwooperation:null,getwomaterial:null,getopresources:null,getworeservation:null,getorderlines:null
         },
   getters:{
   },
@@ -19,6 +19,10 @@ export default
     [types.GET_WOMATERIAL ] (state, payload) 
     { state.getwomaterial = payload.getwomaterial;
      console.log('/store/saw.js-types.GET_WOMATERIAL state=', state);
+    },
+      [types.GET_ORDERLINES ] (state, payload) 
+    { state.getorderlines = payload.getorderlines;
+     console.log('/store/saw.js-types.GET_ORDERLINES state=', state);
     },
     [types.GET_OPMATERIAL ] (state, payload) 
     {  state.getopmaterial=null;
@@ -105,6 +109,14 @@ export default
     let res=axios.get(`/take5/getwomaterial`,{params:{'WorkOrderId':formData}})
     .then(res => {
           commit({type:types.GET_WOMATERIAL ,  getwomaterial: res} )
+      } )
+      return res;    
+    },
+      async getorderlines ({commit,dispatch},formData) 
+    { //let res= await axios.get(api.getorder,{params:{'orderkey':formData}});  
+    let res=axios.get(`/take5/getorderlines`,{params:{'orderkey':formData}})
+    .then(res => {
+          commit({type:types.GET_ORDERLINES ,  getorderlines: res} )
       } )
       return res;    
     },

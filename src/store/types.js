@@ -8,10 +8,13 @@ export const GET_PIC  = 'GET_PIC';
 export const GET_PDF  = 'GET_PDF';
 export const SET_SELECTED_SJC  = 'SET_SELECTED_SJC';
 export const GET_ORDER  = 'GET_ORDER';
+export const GET_ORDERLINES  = 'GET_ORDERLINES';
+
 export const GET_WOMATERIAL  = 'GET_WOMATERIAL';
 export const GET_OPMATERIAL  = 'GET_OPMATERIAL';
 export const GET_OPRESOURCES  = 'GET_OPRESOURCES';
 export const GET_WOOPERATION  = 'GET_WOOPERATION';
 export const GET_WORESERVATION  = 'GET_WORESERVATION';
+
 
 

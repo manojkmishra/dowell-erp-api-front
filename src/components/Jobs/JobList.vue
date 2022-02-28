@@ -22,9 +22,10 @@
         </v-toolbar>
     </template>
     <template v-slot:item.action="{ item }"><!--1=qd,2-inpr,3-complt----->
-     
        <v-btn ripple small :loading="loading" color="teal " rounded dark   @click.prevent="checkorder(item)"><v-icon >mdi-mouse-move-up</v-icon></v-btn>
-       
+    </template>
+        <template v-slot:item.action1="{ item }"><!--1=qd,2-inpr,3-complt----->
+       <v-btn ripple small :loading="loading" color="blue " rounded dark   @click.prevent="getorderlines(item)"><v-icon >mdi-mouse-move-up</v-icon></v-btn>
     </template>
         <template v-slot:item.createdat="{ item }" ><!--8,0=qd,9-inpr,12-complt----->
        <span>{{moment(item.CreationDate).format('DD-MM-YYYY, HH:mm')}}</span>
@@ -63,8 +64,9 @@ export default
                { text: 'BUName', align: 'left',  value: 'BusinessUnitName', width:"1%"},
                { text: 'Buyer', align: 'left',  value: 'BuyingPartyName', width:"5%"},
               { text: 'BuyerContct', align: 'left',  value: 'BuyingPartyContactName', width:"1%"},
-              { text: 'Contact', align: 'left',  value: 'BuyingPartyContactNumber', width:"1%"},
-              { text: 'PrcSeg', align: 'left',  value: 'PricingSegment', width:"1%"},
+              { text: 'BillToAcct', align: 'left',  value: 'BuyingPartyNumber', width:"1%"},
+               { text: 'OrdrLines', value: 'action1', sortable: false , width:"1%"},
+              //{ text: 'PrcSeg', align: 'left',  value: 'PricingSegment', width:"1%"},
               { text: 'OrdKey', align: 'left',  value: 'OrderKey', width:"1%"},
               //{ text: 'Postcd', align: 'left',  value: 'POSTCODE'},
               //{ text: 'Contact', align: 'left',  value: 'CONTACT'},
@@ -107,10 +109,23 @@ export default
         },
   methods: {  
     //--------------------------------get one order--------------
+        getorderlines(x){
+            console.log('getorderlines-',x)
+              this.loading=true;
+              this.$store.dispatch('getorderlines', x.OrderKey)
+                        .then((response) =>  { //console.log('order-response=',response);  
+                                this.loading=false;   
+                               this.$router.push({   name: 'orderlines'//,params: {data1: res }  
+                               });
+                                })     
+                        .catch((error) => {   this.loading=false; 
+                        console.log('error-',error)     
+                        });
+          },
     checkorder(x){
-console.log('checkorder-',x)
-this.loading=true;
- this.$store.dispatch('getorder', x.OrderKey)
+                    console.log('checkorder-',x)
+                    this.loading=true;
+                    this.$store.dispatch('getorder', x.OrderKey)
                         .then((response) =>  { //console.log('order-response=',response);  
                                 this.loading=false;   
                                this.$router.push({   name: 'order'//,params: {data1: res }  

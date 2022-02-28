@@ -9,6 +9,10 @@ import buyeruser from '../components/User/Buyer/UserList.vue'
 
 import Jobs from '../components/Jobs/Jobs.vue'
 import Order from '../components/Jobs/Order.vue'
+import orderlines from '../components/Jobs/orderlines.vue'
+import orderlinesdetail from '../components/Jobs/oneorderlines.vue'
+
+
 import Pricelist from '../components/pricelist/price.vue'
 import WorkOrders from '../components/workorders/wo.vue'
 import womaterial from '../components/workorders/womaterial.vue'
@@ -57,7 +61,9 @@ const routes = [
 
   {path:'/orderlist',name:'orderlist',component: Jobs,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/order',name:'order',component: Order,meta: {middleware: [Middlewares.auth]}  } ,
+  {path:'/orderlines',name:'orderlines',component: orderlines,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/pricelists',name:'pricelists',component: Pricelist,meta: {middleware: [Middlewares.auth]}  } ,
+  {path:'/orderlinesdetail',name:'orderlinesdetail',component: orderlinesdetail,props: true,meta: {middleware: [Middlewares.auth]}  } ,
 
   {path:'/invoices',name:'invoices',component: invoices,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/invoiceholds',name:'invoiceholds',component: invoiceholds,meta: {middleware: [Middlewares.auth]}  } ,
