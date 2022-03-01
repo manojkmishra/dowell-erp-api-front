@@ -10,7 +10,7 @@
     <template v-slot:top >
 
         <v-toolbar flat dark dense color="blue darken-4">
-            <v-toolbar-title>ERP USERS [hcmRestApi/scim/Users]</v-toolbar-title>
+            <v-toolbar-title>ERP ROLES [hcmRestApi/scim/Roles]</v-toolbar-title>
              <v-divider class="mx-4" inset vertical ></v-divider>
          <!--  <v-toolbar-title class="pr-4" >ADMIN USER - {{user.name}} </v-toolbar-title>   -->         
             <v-spacer></v-spacer>
@@ -28,10 +28,7 @@
     </template>
    
     <template v-slot:item.hehe="{ item }" ><!--8,0=qd,9-inpr,12-complt----->
-       <span>{{item['urn:scim:schemas:extension:fa:2.0:faUser'].workerInformation }}</span>
-    </template>
-        <template v-slot:item.roles1="{ item }" ><!--8,0=qd,9-inpr,12-complt----->
-       <span>{{item.roles && item.roles.map(function (el) { return el.displayName; }) }}</span>
+       <span>{{item.meta.resourceType}}</span>
     </template>
     <template v-slot:item.updatedat="{ item }" ><!--8,0=qd,9-inpr,12-complt----->
        <span>{{moment(item.meta.lastModified).format('DD-MM-YYYY, HH:mm')}}</span>
@@ -64,13 +61,12 @@ export default
              
               // { text: 'Select', value: 'action', sortable: false , width:"1%"},
                //{ text: 'displayName', align: 'left',  value: 'displayName', width:"1%"},
-               { text: 'userName', align: 'left',  value: 'userName', width:"1%"},
+               { text: 'RoleName', align: 'left',  value: 'displayName', width:"20%"},
               // { text: 'Role', align: 'left',  value: 'roles[0].displayName', width:"5%",sortable: true},
-              { text: 'Role', align: 'left',  value: 'roles1', width:"50%",sortable: true},
-              { text: 'Active', align: 'left',  value: 'active', width:"1%",sortable: true},
+              { text: 'description', align: 'left',  value: 'description', width:"50%",sortable: true},
              
-              { text: 'Info', align: 'left',  value: 'hehe', width:"20%"},
-              //{ text: 'Contact', align: 'left',  value: 'CONTACT'},
+              //{ text: 'Info', align: 'left',  value: 'hehe', width:"20%"},
+              { text: 'category', align: 'left',  value: 'category',width:"1%",sortable: true},
              // { text: 'Due Dt', align: 'left',  value: 'DELIVERY_DATE'},
              // { text: 'schedule_saw', align: 'left',  value: 'schedule_saw'},
               //{ text: 'BOM', align: 'left',  value: 'bom'},
@@ -79,8 +75,8 @@ export default
              // { text: 'Status', value: 'Status' ,sortable: false, width:"1%"},
               //{ text: 'T5', value: 't5',sortable: false },
               //{ text: 'JC', value: 'jc', sortable: false },
-               { text: 'created_at', align: 'left', value: 'createdat',width:"5%",sortable: true},
-               { text: 'updated_at', align: 'left',  value: 'updatedat', width:"5%",sortable: true},
+               { text: 'created_at', align: 'left', value: 'createdat',width:"10%",sortable: true},
+               { text: 'updated_at', align: 'left',  value: 'updatedat', width:"10%",sortable: true},
              // { text: 'created_by', align: 'left',  value: 'createdby.name'},
                //{ text: 'updated_by', align: 'left',  value: 'LastUpdatedBy', width:"1%"},
                //{ text: 'Action', value: 'actions', sortable: false , width:"1%"},
@@ -90,7 +86,7 @@ export default
     }
           },
   created(){ this.loading=true;
-            axios.get(`/take5/geterpuserslist`,
+            axios.get(`/take5/geterproleslist`,
              //{params:{'per_page':e.itemsPerPage}}
              )
                     .then((res) => { console.log('pagi-geterpuserslist response',res.data)  
@@ -110,11 +106,6 @@ export default
             //jobtypeoptions:state => state.jobs.jobtypeoptions,
              useroptions:state => state.user.useroptions,
         }),
-        roles2(){
-          console.log('this.sawflags=',this.sawflags.Resources.Roles)
-          
-            //x.map(function (el) { return el.name; });
-        },
       formattedDate(){
         return this.editedItem.DELIVERY_DATE ? format(parseISO(this.editedItem.DELIVERY_DATE),'do MMM yyyy') : ''
         },

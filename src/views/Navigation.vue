@@ -116,10 +116,12 @@ export default {
               { title: 'Accounts', route:'/accounts' },
              ],
           },
-        /*  { action: 'mdi-api', title: 'Common APIs',hasMulSub: true,items: [
+          { action: 'mdi-api', title: 'Common APIs',hasMulSub: true,items: [
               { title: 'ERPUsers', route:'/erpusers' },
+              { title: 'Roles', route:'/erproles' },
+              { title: 'BU', route:'/erpbu' },
              ],
-          },*/
+          },
            { action: 'mdi-api', title: 'Financials',hasMulSub: true,items: [
               { title: 'Invoices', route:'/invoices' },
               { title: 'Invoiceholds', route:'/invoiceholds' },

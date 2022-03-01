@@ -35,6 +35,8 @@ import wodispatchlistdetails from '../components/wodispatchlist/onewodispatchlis
 
 import wodetails from '../components/workorders/onewo.vue'
 import erpusers from '../components/erpusers/erpusers.vue'
+import erproles from '../components/erpusers/erproles.vue'
+import erpbu from '../components/erpusers/erpbu.vue'
 import purchaseorders from '../components/purchaseorders/po.vue'
 import poschedules from '../components/poschedules/po.vue'
 import accounts from '../components/accounts/accounts.vue'
@@ -82,6 +84,8 @@ const routes = [
   {path:'/wooperationdetails',name:'wooperationdetails',component: wooperationdetails,props: true,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/opresourcedetails',name:'opresourcedetails',component: opresourcedetails,props: true,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/erpusers',name:'erpusers',component: erpusers,meta: {middleware: [Middlewares.auth]}  } ,
+  {path:'/erpbu',name:'erpbu',component: erpbu,meta: {middleware: [Middlewares.auth]}  } ,
+  {path:'/erproles',name:'erproles',component: erproles,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/purchaseorders',name:'purchaseorders',component: purchaseorders,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/poschedules',name:'poschedules',component: poschedules,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/accounts',name:'accounts',component: accounts,meta: {middleware: [Middlewares.auth]}  } ,
