@@ -112,8 +112,15 @@ export default {
               { title: 'POSchedules', route:'/poschedules' },
              ],
           },
-          { action: 'mdi-api', title: 'CRM',hasMulSub: true,items: [
+          { action: 'mdi-api', title: 'AR',hasMulSub: true,items: [
               { title: 'Accounts', route:'/accounts' },
+               { title: 'hubPersons', route:'/hubpersons' },
+              { title: 'Invoices', route:'/invoices' },
+              { title: 'Invoiceholds', route:'/invoiceholds' },
+              { title: 'Invoiceapprovals', route:'/Invoiceapprovals' },
+              { title: 'ActEvents', route:'/actevent' },
+              { title: 'CustomerWO', route:'/customerwo' },
+              { title: 'Oppertunities', route:'/oppertunities' },
              ],
           },
           { action: 'mdi-api', title: 'Common APIs',hasMulSub: true,items: [

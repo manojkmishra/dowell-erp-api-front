@@ -13,7 +13,7 @@
     <template v-slot:top >
 
         <v-toolbar flat dark dense color="blue darken-4">
-            <v-toolbar-title>Accounts [crmRestApi/resources/11.13.18.05/accounts]</v-toolbar-title>
+            <v-toolbar-title>Oppertunities</v-toolbar-title>
              <v-divider class="mx-4" inset vertical ></v-divider>
                      
             <v-spacer></v-spacer>
@@ -61,15 +61,15 @@ export default
       editedIndex: -1, sawflags:[],// inputRules:[v=>v.length>=3||'Min len is 3 chars'],
               headers: [
               { text: 'Details', value: 'action1', sortable: false , width:"1%"},
-               { text: 'PartyNumber', value: 'PartyNumber', sortable: false , width:"1%"},
-               { text: 'PartyUniqueName', align: 'left',  value: 'PartyUniqueName', width:"3%"},
-               { text: 'PrimaryContactEmail', align: 'left',  value: 'PrimaryContactEmail', width:"3%"},
+               { text: 'OptyNo', value: 'OptyNumber', sortable: false , width:"1%"},
+               { text: 'Name', align: 'left',  value: 'Name', width:"3%"},
+               { text: 'StatusCode', align: 'left',  value: 'StatusCode', width:"3%"},
                //{ text: 'BUName', align: 'left',  value: 'BusinessUnitName', width:"1%"},
-              { text: 'Contacts', value: 'action1', sortable: false , width:"1%"},
-               { text: 'Profile', value: 'action1', sortable: false , width:"1%"},
-               { text: 'FormattedAddressRL', align: 'left',  value: 'FormattedAddress', width:"5%"},
-              //  { text: 'Supplier', align: 'left',  value: 'Supplier', width:"5%"},
-               //  { text: 'SupplierSite', align: 'left',  value: 'SupplierSite', width:"5%"},
+              { text: 'TargetPtyNo', value: 'TargetPartyName', sortable: false , width:"1%"},
+               { text: 'SalesMethod', value: 'SalesMethod', sortable: false , width:"1%"},
+               { text: 'SalesStage', align: 'left',  value: 'SalesStage', width:"5%"},
+               { text: 'DescriptionText', align: 'left',  value: 'DescriptionText', width:"5%"},
+                 { text: 'AcctPtyNo', align: 'left',  value: 'AccountPartyNumber', width:"5%"},
              // { text: 'Ordered', align: 'left',  value: 'Ordered', width:"1%"},
              // { text: 'TotalTax', align: 'left',  value: 'TotalTax', width:"1%"},
              // { text: 'Total', align: 'left',  value: 'Total', width:"1%"},
@@ -113,29 +113,7 @@ export default
                                });
      },
     //--------------------------------get one order--------------
-    checkorder(x){
-console.log('checkorder-',x)
-this.loading=true;
- this.$store.dispatch('getorder', x.OrderKey)
-                        .then((response) =>  { //console.log('order-response=',response);  
-                                this.loading=false;   
-                               this.$router.push({   name: 'order'//,params: {data1: res }  
-                               });
-                                })     
-                        .catch((error) => {   this.loading=false; 
-                        console.log('error-',error)     
-                        });
-
-//------------------------------------
-        /*  axios.get(`/take5/getorder/`,{params:{'orderkey':x.OrderKey}})
-          .then((res) => { console.log('one order response',res.data)  
-                                       this.loading=false; 
-                     this.$router.push({   name: 'order'//,params: {data1: res } 
-                      });
-                                       })
-                    .catch(err=>{ console.log('one order-err=', err) ; this.loading=false; }) */
-                    //--------------
-          },
+    
             paginate1(e)
             { console.log('paginate-$event',e);
             //axios.get(`http://127.0.0.1:8000/api/saw/getsawschedules?page='+${e.page}`,{})
@@ -144,7 +122,7 @@ this.loading=true;
             this.loading=true;
              //axios.get(`${axios.defaults.baseURL}/getjobs?page=${e.page}`,
              //axios.get(`${axios.defaults.baseURL}/take5/getjobs?offset=${e.pageStart}`,
-             axios.get(`/take5/getaccounts?offset=${e.pageStart}`,
+             axios.get(`/take5/getoppertunities?offset=${e.pageStart}`,
              //{params:{'per_page':e.itemsPerPage}}
              )
                     .then((res) => { console.log('pagi-getaccounts response',res.data.items)  
@@ -157,13 +135,13 @@ this.loading=true;
               let x=this.search;
               if(x.length>2){ this.loading=true;
                  //axios.get(`${axios.defaults.baseURL}/take5/getjobs?search=${x}`)
-                  axios.get(`/take5/getaccounts?search=${x}`)
+                  axios.get(`/take5/getoppertunities?search=${x}`)
                     .then((res) => { console.log('getaccounts search res1=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
                     .catch(err=>{ console.log('getaccounts search err1=', err); this.loading=false;  })
                 }
               if(x.length<=0){ this.loading=true;
-                 axios.get(`/take5/getaccounts`)
+                 axios.get(`/take5/getoppertunities`)
                     .then((res) => { console.log('getaccounts search res2=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
                     .catch(err=>{ console.log('getaccounts search err2=', err) ; this.loading=false; })
@@ -177,13 +155,13 @@ this.loading=true;
               let x=this.search;
               if(x.length>2){ this.loading=true;
                  //axios.get(`${axios.defaults.baseURL}/take5/getjobs?search=${x}`)
-                  axios.get(`/take5/getaccounts?search=${x}`)
+                  axios.get(`/take5/getoppertunities?search=${x}`)
                     .then((res) => { console.log('getpurchaseorders search res1=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
                     .catch(err=>{ console.log('getpurchaseorders search err1=', err); this.loading=false;  })
                 }
               if(x.length<=0){ this.loading=true;
-                 axios.get(`/take5/getaccounts`)
+                 axios.get(`/take5/getoppertunities`)
                     .then((res) => { console.log('getaccounts search res2=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
                     .catch(err=>{ console.log('getaccounts search err2=', err) ; this.loading=false; })
@@ -191,70 +169,9 @@ this.loading=true;
             },
 
         
-        editItem (item) 
-        {  this.dialogDelete = false;
-          console.log('edit-item',item)
-          this.editedIndex = this.sawflags.indexOf(item); 
-          console.log('editedIndex',this.editedIndex)
-          this.editedItem = Object.assign({}, item); 
-          //this.editedItem.field_user = item.fuser.name;
-          console.log('editedItem',this.editedItem)
-          //  this.editedItem=item;
-          this.dialog = true
-        },
-         save () 
-      {  console.log('save-item=',this.editedItem);
-        if(this.$refs.form.validate())
-        {
-       if (this.editedIndex > -1) //save clicked when editing
-                  {  console.log('edit',this.editedItem)
-                    //edit api here
-                    this.$store.dispatch('editjobs', this.editedItem) 
-                        .then((response) => { 
-                           this.$store.dispatch('getjobs')
-                           .then((res) => { this.sawflags=res.data; })
-                        })     
-                        
-                    } 
-           //--------save clicked when adding new
-        else {  console.log('add-item',this.editedItem)
-                    //add new api here
-                    this.$store.dispatch('addjobs', this.editedItem) 
-                      .then((response) => {   this.$store.dispatch('getjobs')
-                                                  .then((res) => { this.sawflags=res.data; })
-                                          })     
-              }
-          this.close()
-          } //validate loop
-        },
-        //--------------delete start----------------------------------------------------------
-      deleteItem (item) {console.log('delete-pressed-item',item)
-                       // const index = this.desserts.indexOf(item)
-                        this.dialogDelete = true;
-                        this.editedIndex = this.sawflags.indexOf(item);
-                        this.editedItem = Object.assign({}, item);
-                        this.dialog = true;
-               //after this now press delete on dialogue box to execure below fn
-              },
-      remove() { console.log('remove()- editedIndex', this.editedIndex)
-                  // delete api here
-                  this.$store.dispatch('deljobs', this.editedItem)  
-                                .then((response) => {   this.$store.dispatch('getjobs')
-                                                  .then((res) => { this.sawflags=res.data; })
-                                          })
-                             
-                 // this.dialogDelete = false;
-                  this.close(); 
-                },
-      //-------------------------------delete finish-----------------
-      //------------------close modal---------------------------
-      close () {  
-                  this.dialog = false; 
-                  setTimeout(() => {  
-                    this.editedItem = Object.assign({}, this.defaultItem)
-                          this.editedIndex = -1 
-                          this.dialogDelete = false;}, 100)
-              },
+       
+        
+  
         
           },
   computed: { 

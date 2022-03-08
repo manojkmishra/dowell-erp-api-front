@@ -40,6 +40,14 @@ import erpbu from '../components/erpusers/erpbu.vue'
 import purchaseorders from '../components/purchaseorders/po.vue'
 import poschedules from '../components/poschedules/po.vue'
 import accounts from '../components/accounts/accounts.vue'
+import oneaccount from '../components/accounts/oneaccount.vue'
+
+import customerwo from '../components/customerwo/customerwo.vue'
+import opportunities from '../components/oppertunities/accounts.vue'
+import hubpersons from '../components/hubpersons/accounts.vue'
+
+import actevent from '../components/actevents/actevent.vue'
+import oneactevent from '../components/actevents/oneactevent.vue'
 import workareas from '../components/workareas/wareas.vue'
 import workcenters from '../components/workcenters/wcenters.vue'
 import presources from '../components/productionresources/presources.vue'
@@ -71,6 +79,7 @@ const routes = [
   {path:'/invoiceholds',name:'invoiceholds',component: invoiceholds,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/invoiceapprovals',name:'invoiceapprovals',component: invoiceapprovals,meta: {middleware: [Middlewares.auth]}  } ,
 
+  {path:'/customerwo',name:'customerwo',component: customerwo,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/workorders',name:'workorders',component: WorkOrders,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/womaterial',name:'womaterial',component: womaterial,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/opmaterial',name:'opmaterial',component: opmaterial,meta: {middleware: [Middlewares.auth]}  } ,
@@ -83,12 +92,19 @@ const routes = [
   {path:'/opmaterialdetails',name:'opmaterialdetails',component: opmaterialdetails,props: true,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/wooperationdetails',name:'wooperationdetails',component: wooperationdetails,props: true,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/opresourcedetails',name:'opresourcedetails',component: opresourcedetails,props: true,meta: {middleware: [Middlewares.auth]}  } ,
+  {path:'/accountdetails',name:'accountdetails',component: oneaccount,props: true,meta: {middleware: [Middlewares.auth]}  } ,
+  
   {path:'/erpusers',name:'erpusers',component: erpusers,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/erpbu',name:'erpbu',component: erpbu,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/erproles',name:'erproles',component: erproles,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/purchaseorders',name:'purchaseorders',component: purchaseorders,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/poschedules',name:'poschedules',component: poschedules,meta: {middleware: [Middlewares.auth]}  } ,
+  
   {path:'/accounts',name:'accounts',component: accounts,meta: {middleware: [Middlewares.auth]}  } ,
+  {path:'/hubpersons',name:'hubpersons',component: hubpersons,meta: {middleware: [Middlewares.auth]}  } ,
+  {path:'/opportunities',name:'opportunities',component: opportunities,meta: {middleware: [Middlewares.auth]}  } ,
+  
+  {path:'/actevent',name:'actevent',component: actevent,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/workareas',name:'workareas',component: workareas,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/productionresources',name:'presources',component: presources,meta: {middleware: [Middlewares.auth]}  } ,
   {path:'/standardoperations',name:'stndoprn',component: stndoprn,meta: {middleware: [Middlewares.auth]}  } ,

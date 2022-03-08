@@ -13,7 +13,7 @@
     <template v-slot:top >
 
         <v-toolbar flat dark dense color="blue darken-4">
-            <v-toolbar-title>Accounts [crmRestApi/resources/11.13.18.05/accounts]</v-toolbar-title>
+            <v-toolbar-title>Accounts [crmRestApi/resources/11.13.18.05/actionEvents]</v-toolbar-title>
              <v-divider class="mx-4" inset vertical ></v-divider>
                      
             <v-spacer></v-spacer>
@@ -61,13 +61,13 @@ export default
       editedIndex: -1, sawflags:[],// inputRules:[v=>v.length>=3||'Min len is 3 chars'],
               headers: [
               { text: 'Details', value: 'action1', sortable: false , width:"1%"},
-               { text: 'PartyNumber', value: 'PartyNumber', sortable: false , width:"1%"},
-               { text: 'PartyUniqueName', align: 'left',  value: 'PartyUniqueName', width:"3%"},
-               { text: 'PrimaryContactEmail', align: 'left',  value: 'PrimaryContactEmail', width:"3%"},
-               //{ text: 'BUName', align: 'left',  value: 'BusinessUnitName', width:"1%"},
-              { text: 'Contacts', value: 'action1', sortable: false , width:"1%"},
-               { text: 'Profile', value: 'action1', sortable: false , width:"1%"},
-               { text: 'FormattedAddressRL', align: 'left',  value: 'FormattedAddress', width:"5%"},
+               { text: 'SessionId', value: 'SessionId', sortable: false , width:"1%"},
+               { text: 'SessionUser', align: 'left',  value: 'SessionUser', width:"3%"},
+               { text: 'ActionType', align: 'left',  value: 'ActionType', width:"3%"},
+               { text: 'ProductFamily', align: 'left',  value: 'ProductFamily', width:"1%"},
+             // { text: 'RequestURI', value: 'action1', sortable: false , width:"1%"},
+             //  { text: 'Profile', value: 'action1', sortable: false , width:"1%"},
+               { text: 'RequestURI', align: 'left',  value: 'RequestURI', width:"5%"},
               //  { text: 'Supplier', align: 'left',  value: 'Supplier', width:"5%"},
                //  { text: 'SupplierSite', align: 'left',  value: 'SupplierSite', width:"5%"},
              // { text: 'Ordered', align: 'left',  value: 'Ordered', width:"1%"},
@@ -144,7 +144,7 @@ this.loading=true;
             this.loading=true;
              //axios.get(`${axios.defaults.baseURL}/getjobs?page=${e.page}`,
              //axios.get(`${axios.defaults.baseURL}/take5/getjobs?offset=${e.pageStart}`,
-             axios.get(`/take5/getaccounts?offset=${e.pageStart}`,
+             axios.get(`/take5/getactevents?offset=${e.pageStart}`,
              //{params:{'per_page':e.itemsPerPage}}
              )
                     .then((res) => { console.log('pagi-getaccounts response',res.data.items)  
@@ -157,13 +157,13 @@ this.loading=true;
               let x=this.search;
               if(x.length>2){ this.loading=true;
                  //axios.get(`${axios.defaults.baseURL}/take5/getjobs?search=${x}`)
-                  axios.get(`/take5/getaccounts?search=${x}`)
+                  axios.get(`/take5/getactevents?search=${x}`)
                     .then((res) => { console.log('getaccounts search res1=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
                     .catch(err=>{ console.log('getaccounts search err1=', err); this.loading=false;  })
                 }
               if(x.length<=0){ this.loading=true;
-                 axios.get(`/take5/getaccounts`)
+                 axios.get(`/take5/getactevents`)
                     .then((res) => { console.log('getaccounts search res2=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
                     .catch(err=>{ console.log('getaccounts search err2=', err) ; this.loading=false; })
@@ -177,108 +177,24 @@ this.loading=true;
               let x=this.search;
               if(x.length>2){ this.loading=true;
                  //axios.get(`${axios.defaults.baseURL}/take5/getjobs?search=${x}`)
-                  axios.get(`/take5/getaccounts?search=${x}`)
+                  axios.get(`/take5/getactevents?search=${x}`)
                     .then((res) => { console.log('getpurchaseorders search res1=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
                     .catch(err=>{ console.log('getpurchaseorders search err1=', err); this.loading=false;  })
                 }
               if(x.length<=0){ this.loading=true;
-                 axios.get(`/take5/getaccounts`)
+                 axios.get(`/take5/getactevents`)
                     .then((res) => { console.log('getaccounts search res2=',res.data)  
                                       this.sawflags=res.data; this.loading=false;  })
                     .catch(err=>{ console.log('getaccounts search err2=', err) ; this.loading=false; })
               }
-            },
-
-        
-        editItem (item) 
-        {  this.dialogDelete = false;
-          console.log('edit-item',item)
-          this.editedIndex = this.sawflags.indexOf(item); 
-          console.log('editedIndex',this.editedIndex)
-          this.editedItem = Object.assign({}, item); 
-          //this.editedItem.field_user = item.fuser.name;
-          console.log('editedItem',this.editedItem)
-          //  this.editedItem=item;
-          this.dialog = true
-        },
-         save () 
-      {  console.log('save-item=',this.editedItem);
-        if(this.$refs.form.validate())
-        {
-       if (this.editedIndex > -1) //save clicked when editing
-                  {  console.log('edit',this.editedItem)
-                    //edit api here
-                    this.$store.dispatch('editjobs', this.editedItem) 
-                        .then((response) => { 
-                           this.$store.dispatch('getjobs')
-                           .then((res) => { this.sawflags=res.data; })
-                        })     
-                        
-                    } 
-           //--------save clicked when adding new
-        else {  console.log('add-item',this.editedItem)
-                    //add new api here
-                    this.$store.dispatch('addjobs', this.editedItem) 
-                      .then((response) => {   this.$store.dispatch('getjobs')
-                                                  .then((res) => { this.sawflags=res.data; })
-                                          })     
-              }
-          this.close()
-          } //validate loop
-        },
-        //--------------delete start----------------------------------------------------------
-      deleteItem (item) {console.log('delete-pressed-item',item)
-                       // const index = this.desserts.indexOf(item)
-                        this.dialogDelete = true;
-                        this.editedIndex = this.sawflags.indexOf(item);
-                        this.editedItem = Object.assign({}, item);
-                        this.dialog = true;
-               //after this now press delete on dialogue box to execure below fn
-              },
-      remove() { console.log('remove()- editedIndex', this.editedIndex)
-                  // delete api here
-                  this.$store.dispatch('deljobs', this.editedItem)  
-                                .then((response) => {   this.$store.dispatch('getjobs')
-                                                  .then((res) => { this.sawflags=res.data; })
-                                          })
-                             
-                 // this.dialogDelete = false;
-                  this.close(); 
-                },
-      //-------------------------------delete finish-----------------
-      //------------------close modal---------------------------
-      close () {  
-                  this.dialog = false; 
-                  setTimeout(() => {  
-                    this.editedItem = Object.assign({}, this.defaultItem)
-                          this.editedIndex = -1 
-                          this.dialogDelete = false;}, 100)
-              },
-        
+            },        
           },
   computed: { 
     ...mapGetters({authenticated:'auth/authenticated',
                        user:'auth/user'
                       }),
-          ...mapState({
-        
-            //jobtypeoptions:state => state.jobs.jobtypeoptions,
-             useroptions:state => state.user.useroptions,
-        }),
-      formattedDate(){
-        return this.editedItem.DELIVERY_DATE ? format(parseISO(this.editedItem.DELIVERY_DATE),'do MMM yyyy') : ''
-        },
-      formTitle() {  if (this.dialogDelete) { return "Delete Flag";} 
-                     else if (this.editedIndex === -1) { console.log('formtitle()-this.editindx(-1=new)',this.editedIndex);
-                                        return "New Job"; }
-                    else if (this.editedIndex > -1) { console.log('formtitle()--this.editindx(>1=edit)',this.editedIndex);
-                                return "Edit Flag";  }  
-                   },
           },
-  watch: { dialog (val) { console.log('inside watch- dialog- val=',val)
-                          val || this.close()  },    
-            },
 }
 </script>
 
